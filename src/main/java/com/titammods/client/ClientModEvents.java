@@ -38,6 +38,7 @@ public class ClientModEvents {
     private static void onClientExtensions(RegisterClientExtensionsEvent event) {
         for (HephaestusFluids.Material material : HephaestusFluids.Material.values()) {
             MoltenFluidSet set = HephaestusFluids.SETS.get(material);
+            if (set == null) continue;
 
             event.registerFluidType(new IClientFluidTypeExtensions() {
                 private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath("hephaestus", "fluid/liquid/molten_metal");
@@ -82,6 +83,7 @@ public class ClientModEvents {
 
         for (HephaestusFluids.Material material : HephaestusFluids.Material.values()) {
             MoltenFluidSet set = HephaestusFluids.SETS.get(material);
+            if (set == null) continue;
 
             ItemBlockRenderTypes.setRenderLayer(set.source.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(set.flowing.get(), RenderType.translucent());
@@ -128,6 +130,7 @@ public class ClientModEvents {
 
         for (com.titammods.registry.HephaestusFluids.Material material : com.titammods.registry.HephaestusFluids.Material.values()) {
             com.titammods.registry.fluids.MoltenFluidSet set = com.titammods.registry.HephaestusFluids.SETS.get(material);
+            if (set == null) continue;
 
             event.register((stack, tintIndex) -> {
                 return tintIndex == 1 ? material.color : 0xFFFFFFFF;

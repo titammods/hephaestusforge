@@ -8,7 +8,7 @@
   "type": "hephaestus:melting",
   "fuel": {
     "amount": 50,
-    "id": "hephaestus:molten_blaze"
+    "id": "minecraft:lava"
   },
   "ingredient": {
     "tag": "c:storage_blocks/nickel"
@@ -17,6 +17,6 @@
     "amount": 810,
     "id": "hephaestus:molten_nickel"
   },
-  "temperature": 1450,
+  "temperature": 1000,
   "time": 200
 }

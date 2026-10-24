@@ -1,0 +1,5 @@
+{
+  "parent": "neoforge:item/bucket",
+  "fluid": "hephaestus:molten_dimensional_shard",
+  "loader": "neoforge:fluid_container"
+}

@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "cakesticklib"
+    }
+  ],
+  "type": "hephaestus:melting",
+  "fuel": {
+    "amount": 50,
+    "id": "minecraft:lava"
+  },
+  "ingredient": {
+    "tag": "c:storage_blocks/wrought_iron"
+  },
+  "result": {
+    "amount": 810,
+    "id": "hephaestus:molten_wrought_iron"
+  },
+  "temperature": 800,
+  "time": 200
+}

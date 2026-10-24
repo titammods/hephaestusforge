@@ -21,6 +21,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         for (HephaestusFluids.Material material : HephaestusFluids.Material.values()) {
+            if (HephaestusFluids.SETS.get(material) == null) continue;
             createFluidBucket("molten_" + material.name, HephaestusFluids.SETS.get(material));
         }
 

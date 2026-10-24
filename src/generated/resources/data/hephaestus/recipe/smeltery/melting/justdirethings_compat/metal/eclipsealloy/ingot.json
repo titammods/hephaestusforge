@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "justdirethings"
+    }
+  ],
+  "type": "hephaestus:melting",
+  "fuel": {
+    "amount": 50,
+    "id": "hephaestus:molten_blaze"
+  },
+  "ingredient": {
+    "tag": "c:ingots/eclipsealloy"
+  },
+  "result": {
+    "amount": 90,
+    "id": "hephaestus:molten_eclipse_alloy"
+  },
+  "temperature": 1600,
+  "time": 100
+}

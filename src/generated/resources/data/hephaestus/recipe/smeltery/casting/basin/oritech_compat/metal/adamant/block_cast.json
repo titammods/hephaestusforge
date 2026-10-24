@@ -1,0 +1,15 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "oritech"
+    }
+  ],
+  "type": "hephaestus:casting_basin",
+  "input": {
+    "amount": 810,
+    "id": "hephaestus:molten_adamant"
+  },
+  "result": "oritech:adamant",
+  "time": 200
+}

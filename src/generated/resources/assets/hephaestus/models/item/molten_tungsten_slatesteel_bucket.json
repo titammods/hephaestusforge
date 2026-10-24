@@ -1,0 +1,5 @@
+{
+  "parent": "neoforge:item/bucket",
+  "fluid": "hephaestus:molten_tungsten_slatesteel",
+  "loader": "neoforge:fluid_container"
+}

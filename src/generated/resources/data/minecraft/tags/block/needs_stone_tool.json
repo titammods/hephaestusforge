@@ -65,53 +65,426 @@
     "hephaestus:seared_table",
     "hephaestus:seared_basin",
     "hephaestus:seared_faucet",
-    "hephaestus:molten_cobalt_block",
-    "hephaestus:molten_quartz_block",
-    "hephaestus:molten_diamond_block",
-    "hephaestus:molten_emerald_block",
-    "hephaestus:molten_amethyst_block",
-    "hephaestus:molten_blaze_block",
-    "hephaestus:molten_seared_stone_block",
-    "hephaestus:molten_scorched_stone_block",
-    "hephaestus:molten_aluminum_block",
-    "hephaestus:molten_ancient_debris_block",
-    "hephaestus:molten_brass_block",
-    "hephaestus:molten_bronze_block",
-    "hephaestus:molten_carbon_block",
-    "hephaestus:molten_constantan_block",
-    "hephaestus:molten_copper_block",
-    "hephaestus:molten_electrum_block",
-    "hephaestus:molten_ender_block",
-    "hephaestus:molten_enderium_block",
-    "hephaestus:molten_glass_block",
-    "hephaestus:molten_glowstone_block",
-    "hephaestus:molten_gold_block",
-    "hephaestus:molten_heavy_core_block",
-    "hephaestus:molten_invar_block",
-    "hephaestus:molten_iridium_block",
-    "hephaestus:molten_iron_block",
-    "hephaestus:molten_lapis_block",
-    "hephaestus:molten_lead_block",
-    "hephaestus:molten_meat_block",
-    "hephaestus:molten_lumium_block",
-    "hephaestus:molten_magma_cream_block",
-    "hephaestus:molten_netherite_block",
-    "hephaestus:molten_nickel_block",
-    "hephaestus:molten_obsidian_block",
-    "hephaestus:molten_osmium_block",
-    "hephaestus:molten_platinum_block",
-    "hephaestus:molten_redstone_block",
-    "hephaestus:molten_refined_glowstone_block",
-    "hephaestus:molten_refined_obsidian_block",
-    "hephaestus:molten_signalum_block",
-    "hephaestus:molten_shulker_shell_block",
-    "hephaestus:molten_silver_block",
-    "hephaestus:molten_slime_block",
-    "hephaestus:molten_steel_block",
-    "hephaestus:molten_tin_block",
-    "hephaestus:molten_uranium_block",
-    "hephaestus:molten_wax_block",
-    "hephaestus:molten_zinc_block",
+    {
+      "id": "hephaestus:molten_cobalt_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_quartz_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_diamond_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_emerald_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_amethyst_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_blaze_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_seared_stone_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_scorched_stone_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_aluminum_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_brass_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_bronze_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_constantan_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_copper_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_electrum_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_enderium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_gold_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_iesnium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_invar_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_iridium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_iron_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_lead_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_lumium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_netherite_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_nickel_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_osmium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_platinum_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_signalum_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_silver_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_steel_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_tin_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_uranium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_zinc_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_aeternium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_adamantite_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_aurichalcum_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_titanium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_chromium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_wrought_iron_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_conductive_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_redstone_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_energetic_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_pulsating_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_soularium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_vibrant_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_dark_steel_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_end_steel_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_energetic_silver_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_vivid_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_energized_copper_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_energized_gold_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_advanced_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_energized_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_crystallized_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_niobium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_slatesteel_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_tungsten_slatesteel_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_desh_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_ferricore_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_blazegold_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_eclipse_alloy_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_thaumium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_void_metal_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_hellforged_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_atlantic_gold_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_aquarine_steel_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_dragonsteel_fire_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_dragonsteel_ice_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_dragonsteel_lightning_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_adamant_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_duratium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_prometheum_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_ruby_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_sapphire_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_peridot_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_topaz_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_onyx_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_garnet_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_moonstone_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_prismarine_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_certus_quartz_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_fluix_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_entro_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_fluxite_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_xychorium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_spirit_attuned_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_dark_gem_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_celestine_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_olivine_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_dimensional_shard_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_heavy_core_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_glowstone_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_redstone_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_obsidian_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_glass_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_lapis_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_carbon_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_ender_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_ancient_debris_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_shulker_shell_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_slime_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_magma_cream_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_wax_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_meat_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_refined_glowstone_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_refined_obsidian_block",
+      "required": false
+    },
     "hephaestus:seared_ingot_tank",
     "hephaestus:seared_fuel_tank"
   ]

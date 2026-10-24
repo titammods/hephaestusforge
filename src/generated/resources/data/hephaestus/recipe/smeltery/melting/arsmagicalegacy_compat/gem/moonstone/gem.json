@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "arsmagicalegacy"
+    }
+  ],
+  "type": "hephaestus:melting",
+  "fuel": {
+    "amount": 50,
+    "id": "minecraft:lava"
+  },
+  "ingredient": {
+    "tag": "c:gems/moonstone"
+  },
+  "result": {
+    "amount": 90,
+    "id": "hephaestus:molten_moonstone"
+  },
+  "temperature": 800,
+  "time": 120
+}

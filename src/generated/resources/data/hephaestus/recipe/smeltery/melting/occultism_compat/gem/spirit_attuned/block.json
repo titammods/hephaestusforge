@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "occultism"
+    }
+  ],
+  "type": "hephaestus:melting",
+  "fuel": {
+    "amount": 50,
+    "id": "minecraft:lava"
+  },
+  "ingredient": {
+    "tag": "c:storage_blocks/spirit_attuned"
+  },
+  "result": {
+    "amount": 810,
+    "id": "hephaestus:molten_spirit_attuned"
+  },
+  "temperature": 1000,
+  "time": 240
+}

@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -33,6 +34,12 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         for (var blockHolder : ModBlocks.BLOCKS.getEntries()) {
             Block block = blockHolder.get();
             String name = blockHolder.getId().getPath();
+
+            if (block instanceof LiquidBlock) {
+                pickaxeTag.addOptional(blockHolder.getId());
+                stoneToolTag.addOptional(blockHolder.getId());
+                continue;
+            }
 
             pickaxeTag.add(block);
             stoneToolTag.add(block);

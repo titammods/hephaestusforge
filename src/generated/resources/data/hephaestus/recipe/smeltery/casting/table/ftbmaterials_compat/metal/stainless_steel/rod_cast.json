@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ftbmaterials"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "colossal_reactors"
+    }
+  ],
+  "type": "hephaestus:casting_table",
+  "cast": {
+    "item": "hephaestus:rod_cast"
+  },
+  "cooling_time": 50,
+  "fluid": {
+    "amount": 45,
+    "id": "colossal_reactors:molten_stainless_steel"
+  },
+  "result": "ftbmaterials:stainless_steel_rod"
+}

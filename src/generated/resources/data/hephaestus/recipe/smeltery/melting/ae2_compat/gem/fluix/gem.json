@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ae2"
+    }
+  ],
+  "type": "hephaestus:melting",
+  "fuel": {
+    "amount": 50,
+    "id": "minecraft:lava"
+  },
+  "ingredient": {
+    "tag": "c:gems/fluix"
+  },
+  "result": {
+    "amount": 90,
+    "id": "hephaestus:molten_fluix"
+  },
+  "temperature": 1000,
+  "time": 120
+}

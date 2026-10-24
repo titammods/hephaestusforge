@@ -1,0 +1,5 @@
+{
+  "parent": "neoforge:item/bucket",
+  "fluid": "hephaestus:molten_dark_gem",
+  "loader": "neoforge:fluid_container"
+}
