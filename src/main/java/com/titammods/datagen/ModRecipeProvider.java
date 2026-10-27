@@ -230,6 +230,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerFtbIcCompat(output);
         registerGeoreCompat(output);
 
+        registerAllTheModiumCompat(output);
         registerAe2Compat(output);
         registerArsMagicaLegacyCompat(output);
         registerCakeStickLibCompat(output);
@@ -533,6 +534,20 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         String prefix = "ftbic_compat/";
 
         registerExternalMetalById(icOutput, moltenId(HephaestusFluids.Material.MOLTEN_ENDERIUM), "ftbic", 1450, "enderium", false, prefix);
+    }
+
+    private void registerAllTheModiumCompat(RecipeOutput output) {
+        RecipeOutput modOutput = output.withConditions(modLoaded("allthemodium"));
+        String prefix = "allthemodium_compat/";
+
+        HephaestusFluids.Material[] metals = {
+                HephaestusFluids.Material.MOLTEN_ALLTHEMODIUM,
+                HephaestusFluids.Material.MOLTEN_VIBRANIUM,
+                HephaestusFluids.Material.MOLTEN_UNOBTAINIUM
+        };
+        for (HephaestusFluids.Material metal : metals) {
+            registerExternalMetalById(modOutput, moltenId(metal), "allthemodium", metal.temperature, metal.name, true, prefix);
+        }
     }
 
     private void registerAe2Compat(RecipeOutput output) {

@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "allthemodium"
+    }
+  ],
+  "type": "hephaestus:melting",
+  "fuel": {
+    "amount": 50,
+    "id": "hephaestus:molten_blaze"
+  },
+  "ingredient": {
+    "tag": "c:gears/allthemodium"
+  },
+  "result": {
+    "amount": 360,
+    "id": "hephaestus:molten_allthemodium"
+  },
+  "temperature": 1500,
+  "time": 200
+}

@@ -504,5 +504,14 @@
   "block.hephaestus.molten_olivine_block": "Olivina Derretida",
   "fluid_type.hephaestus.molten_dimensional_shard": "Fragmento Dimensional Derretido",
   "item.hephaestus.molten_dimensional_shard_bucket": "Balde de Fragmento Dimensional Derretido",
-  "block.hephaestus.molten_dimensional_shard_block": "Fragmento Dimensional Derretido"
+  "block.hephaestus.molten_dimensional_shard_block": "Fragmento Dimensional Derretido",
+  "fluid_type.hephaestus.molten_allthemodium": "Allthemodium Derretido",
+  "item.hephaestus.molten_allthemodium_bucket": "Balde de Allthemodium Derretido",
+  "block.hephaestus.molten_allthemodium_block": "Allthemodium Derretido",
+  "fluid_type.hephaestus.molten_vibranium": "Vibranium Derretido",
+  "item.hephaestus.molten_vibranium_bucket": "Balde de Vibranium Derretido",
+  "block.hephaestus.molten_vibranium_block": "Vibranium Derretido",
+  "fluid_type.hephaestus.molten_unobtainium": "Unobtainium Derretido",
+  "item.hephaestus.molten_unobtainium_bucket": "Balde de Unobtainium Derretido",
+  "block.hephaestus.molten_unobtainium_block": "Unobtainium Derretido"
 }

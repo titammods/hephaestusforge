@@ -504,5 +504,14 @@
   "block.hephaestus.molten_olivine_block": "Molten Olivine",
   "fluid_type.hephaestus.molten_dimensional_shard": "Molten Dimensional Shard",
   "item.hephaestus.molten_dimensional_shard_bucket": "Molten Dimensional Shard Bucket",
-  "block.hephaestus.molten_dimensional_shard_block": "Molten Dimensional Shard"
+  "block.hephaestus.molten_dimensional_shard_block": "Molten Dimensional Shard",
+  "fluid_type.hephaestus.molten_allthemodium": "Molten Allthemodium",
+  "item.hephaestus.molten_allthemodium_bucket": "Molten Allthemodium Bucket",
+  "block.hephaestus.molten_allthemodium_block": "Molten Allthemodium",
+  "fluid_type.hephaestus.molten_vibranium": "Molten Vibranium",
+  "item.hephaestus.molten_vibranium_bucket": "Molten Vibranium Bucket",
+  "block.hephaestus.molten_vibranium_block": "Molten Vibranium",
+  "fluid_type.hephaestus.molten_unobtainium": "Molten Unobtainium",
+  "item.hephaestus.molten_unobtainium_bucket": "Molten Unobtainium Bucket",
+  "block.hephaestus.molten_unobtainium_block": "Molten Unobtainium"
 }

@@ -206,6 +206,18 @@
       "required": false
     },
     {
+      "id": "hephaestus:molten_allthemodium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_vibranium_block",
+      "required": false
+    },
+    {
+      "id": "hephaestus:molten_unobtainium_block",
+      "required": false
+    },
+    {
       "id": "hephaestus:molten_titanium_block",
       "required": false
     },
