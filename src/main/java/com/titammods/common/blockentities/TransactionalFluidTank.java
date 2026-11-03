@@ -10,7 +10,6 @@ import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 
 import java.util.Objects;
 
-/** Exposes existing machine tanks to transactional automation. */
 @SuppressWarnings("removal")
 public class TransactionalFluidTank extends FluidTank implements ResourceHandler<FluidResource> {
     private final boolean allowInsert;
@@ -26,6 +25,8 @@ public class TransactionalFluidTank extends FluidTank implements ResourceHandler
         this.allowInsert = allowInsert;
         this.allowExtract = allowExtract;
     }
+
+    protected boolean canExtract() { return allowExtract; }
 
     @Override public int size() { return 1; }
 
@@ -68,7 +69,7 @@ public class TransactionalFluidTank extends FluidTank implements ResourceHandler
     public int extract(int index, FluidResource resource, int amount, TransactionContext transaction) {
         Objects.checkIndex(index, 1);
         TransferPreconditions.checkNonEmptyNonNegative(resource, amount);
-        if (!allowExtract || amount == 0) return 0;
+        if (!canExtract() || amount == 0) return 0;
         int extracted = drain(resource.toStack(amount), FluidAction.SIMULATE).getAmount();
         if (extracted <= 0) return 0;
         journal.updateSnapshots(transaction);

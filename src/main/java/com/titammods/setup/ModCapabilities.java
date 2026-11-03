@@ -5,6 +5,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.transfer.item.WorldlyContainerWrapper;
+import net.minecraft.core.Direction;
 
 @EventBusSubscriber(modid = TitamMods.MODID)
 public final class ModCapabilities {
@@ -22,6 +24,8 @@ public final class ModCapabilities {
                 (basin, side) -> basin.getFluidResourceHandler());
         event.registerBlockEntity(Capabilities.Fluid.BLOCK, ModBlockEntities.SEARED_DRAIN.get(),
                 (drain, side) -> drain.getFluidResourceHandler());
+        event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntities.BASIN.get(),
+                (basin, side) -> new WorldlyContainerWrapper(basin, side == null ? Direction.DOWN : side));
         event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntities.MELTER.get(),
                 (melter, side) -> melter.getItemResourceHandler());
         event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntities.SEARED_CHUTE.get(),

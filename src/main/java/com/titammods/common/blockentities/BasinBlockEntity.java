@@ -41,7 +41,11 @@ public class BasinBlockEntity extends BlockEntity implements WorldlyContainer {
     public int renderTimer  = 0;
     public int ejectCooldown = 0;
     public int fillTarget    = 0;
+    private boolean drainable = false;
+    private long lastFillTime = 0;
+    private int lastAmount    = 0;
 
+    @SuppressWarnings("removal")
     @Override
     public void preRemoveSideEffects(BlockPos pos, BlockState state) {
         super.preRemoveSideEffects(pos, state);
@@ -89,7 +93,22 @@ public class BasinBlockEntity extends BlockEntity implements WorldlyContainer {
         }
 
         @Override
+        protected boolean canExtract() {
+            if (level == null || level.isClientSide()) return false;
+            if (renderTimer > 0 || !inventory.getStackInSlot(OUTPUT).isEmpty()) return false;
+            if (!drainable || fluid.isEmpty()) return false;
+            return findRecipe(inventory.getStackInSlot(CAST), fluid.getFluid(), fluid.getAmount()) == null;
+        }
+
+        @Override
         protected void onContentsChanged() {
+            int amount = fluid.getAmount();
+            if (amount > lastAmount) {
+                drainable = false;
+                if (level != null) lastFillTime = level.getGameTime();
+            }
+            if (amount == 0) drainable = false;
+            lastAmount = amount;
             setChanged();
             if (level != null && !level.isClientSide()) {
                 level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
@@ -166,6 +185,8 @@ public class BasinBlockEntity extends BlockEntity implements WorldlyContainer {
 
         ModRecipes.@Nullable CastingBasinRecipe matchedRecipe =
                 findRecipe(inventory.getStackInSlot(CAST), currentFluid.getFluid(), currentFluid.getAmount());
+
+        if (matchedRecipe == null && !drainable && level.getGameTime() - lastFillTime >= 20) drainable = true;
 
         if (matchedRecipe != null) {
             coolingTime++;
@@ -250,6 +271,8 @@ public class BasinBlockEntity extends BlockEntity implements WorldlyContainer {
         inventory.setStackInSlot(OUTPUT, input.read("slot0", ItemStack.OPTIONAL_CODEC).orElse(ItemStack.EMPTY));
         inventory.setStackInSlot(CAST, input.read("cast", ItemStack.OPTIONAL_CODEC).orElse(ItemStack.EMPTY));
         tank.setFluid(input.read("tank", FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY));
+        lastAmount = tank.getFluidAmount();
+        drainable  = false;
     }
 
     @Override
