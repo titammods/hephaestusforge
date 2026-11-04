@@ -1,0 +1,12 @@
+{
+  "type": "hephaestus:casting_basin",
+  "cast": {
+    "item": "hephaestus:seared_bricks"
+  },
+  "input": {
+    "amount": 810,
+    "id": "hephaestus:molten_copper"
+  },
+  "result": "hephaestus:smeltery_controller",
+  "time": 200
+}

@@ -97,10 +97,22 @@ public class ModRecipes {
         @Override public StreamCodec<RegistryFriendlyByteBuf, CastingBasinRecipe> streamCodec() { return CastingBasinRecipe.STREAM_CODEC; }
     });
 
-    public record CastingBasinRecipe(FluidStack input, ResourceLocation resultId, int resultCount, int time) implements Recipe<SingleRecipeInput> {
+    public record CastingBasinRecipe(Ingredient cast, FluidStack input, ResourceLocation resultId, int resultCount, int time) implements Recipe<SingleRecipeInput> {
+
+        public CastingBasinRecipe(FluidStack input, ResourceLocation resultId, int resultCount, int time) {
+            this(Ingredient.EMPTY, input, resultId, resultCount, time);
+        }
 
         public CastingBasinRecipe(FluidStack input, ItemStack output, int time) {
-            this(input, BuiltInRegistries.ITEM.getKey(output.getItem()), output.getCount(), time);
+            this(Ingredient.EMPTY, input, BuiltInRegistries.ITEM.getKey(output.getItem()), output.getCount(), time);
+        }
+
+        public boolean hasCast() {
+            return cast != null && !cast.isEmpty();
+        }
+
+        public boolean matchesCast(ItemStack stack) {
+            return hasCast() ? cast.test(stack) : stack.isEmpty();
         }
 
         public ItemStack result() {
@@ -111,6 +123,7 @@ public class ModRecipes {
         public ItemStack output() { return result(); }
 
         public static final MapCodec<CastingBasinRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                Ingredient.CODEC.optionalFieldOf("cast", Ingredient.EMPTY).forGetter(CastingBasinRecipe::cast),
                 FluidStack.CODEC.fieldOf("input").forGetter(CastingBasinRecipe::input),
                 ResourceLocation.CODEC.fieldOf("result").forGetter(CastingBasinRecipe::resultId),
                 Codec.INT.optionalFieldOf("count", 1).forGetter(CastingBasinRecipe::resultCount),
@@ -118,6 +131,7 @@ public class ModRecipes {
         ).apply(inst, CastingBasinRecipe::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, CastingBasinRecipe> STREAM_CODEC = StreamCodec.composite(
+                Ingredient.CONTENTS_STREAM_CODEC, CastingBasinRecipe::cast,
                 FluidStack.STREAM_CODEC, CastingBasinRecipe::input,
                 net.minecraft.network.codec.ByteBufCodecs.fromCodec(ResourceLocation.CODEC), CastingBasinRecipe::resultId,
                 ByteBufCodecs.INT, CastingBasinRecipe::resultCount,

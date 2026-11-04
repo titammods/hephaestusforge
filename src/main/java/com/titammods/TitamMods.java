@@ -10,8 +10,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import com.titammods.block.SmelteryControllerBlockEntity;
-import com.titammods.block.SearedChuteBlockEntity;
 import com.titammods.network.ModNetworking;
 import net.neoforged.fml.ModList;
 import com.titammods.registry.HephaestusFluids;
@@ -72,21 +70,14 @@ public class TitamMods {
     public void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.SMELETRY_TANK.get(), (be, side) -> be.getTank());
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.BASIN.get(), (be, side) -> be.externalFluidHandler);
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.BASIN.get(), (be, side) -> be.inventory);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.BASIN.get(), (be, side) -> be.externalItemHandler);
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.TABLE.get(), (be, side) -> be.externalFluidHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.TABLE.get(), (be, side) -> be.externalHandler);
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.MELTER.get(), (be, side) -> be.tank);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.MELTER.get(), (be, side) -> be.externalItemHandler);
 
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.SEARED_DRAIN.get(), (be, side) -> be.getFluidHandler());
-        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.SEARED_CHUTE.get(), (be, side) -> {
-            if (be instanceof SearedChuteBlockEntity chute && chute.getControllerPos() != null) {
-                if (chute.getLevel().getBlockEntity(chute.getControllerPos()) instanceof SmelteryControllerBlockEntity controller) {
-                    return controller.itemHandler;
-                }
-            }
-            return null;
-        });
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.SEARED_CHUTE.get(), (be, side) -> be.getItemHandler());
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

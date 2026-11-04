@@ -5,6 +5,7 @@ import com.titammods.setup.ModBlocks;
 import com.titammods.setup.ModRecipes;
 import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -22,8 +23,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import java.awt.Color;
-import java.util.Collections;
-import java.util.List;
 
 public class CastingTableCategory implements IRecipeCategory<ModRecipes.CastingTableRecipe> {
     public static final ResourceLocation BACKGROUND_LOC = ResourceLocation.fromNamespaceAndPath(TitamMods.MODID, "textures/gui/jei/casting.png");
@@ -32,8 +31,8 @@ public class CastingTableCategory implements IRecipeCategory<ModRecipes.CastingT
     private final IDrawable icon;
     private final IDrawable tankOverlay;
     private final IDrawable tableIcon;
-    private final IDrawable checkmarkIcon;
-    private final IDrawable xIcon;
+    private final IDrawable castConsumed;
+    private final IDrawable castKept;
     private final IGuiHelper guiHelper;
 
     public CastingTableCategory(IGuiHelper guiHelper) {
@@ -43,8 +42,8 @@ public class CastingTableCategory implements IRecipeCategory<ModRecipes.CastingT
         this.tankOverlay = guiHelper.createDrawable(BACKGROUND_LOC, 133, 0, 32, 32);
         this.tableIcon = guiHelper.createDrawable(BACKGROUND_LOC, 117, 0, 16, 16);
 
-        this.xIcon = guiHelper.createDrawable(BACKGROUND_LOC, 141, 32, 13, 11);
-        this.checkmarkIcon = guiHelper.createDrawable(BACKGROUND_LOC, 141, 43, 13, 11);
+        this.castConsumed = guiHelper.createDrawable(BACKGROUND_LOC, 141, 32, 13, 11);
+        this.castKept = guiHelper.createDrawable(BACKGROUND_LOC, 141, 43, 13, 11);
     }
 
     @Override public RecipeType<ModRecipes.CastingTableRecipe> getRecipeType() { return TitamModsJEIPlugin.CASTING_TABLE_TYPE; }
@@ -87,26 +86,26 @@ public class CastingTableCategory implements IRecipeCategory<ModRecipes.CastingT
 
         if (recipe.cast() != null && !recipe.cast().isEmpty()) {
             if (recipe.castConsumed()) {
-                checkmarkIcon.draw(graphics, 63, 39);
+                castConsumed.draw(graphics, 63, 39);
             } else {
-                xIcon.draw(graphics, 63, 39);
+                castKept.draw(graphics, 63, 39);
             }
         }
 
         Font font = Minecraft.getInstance().font;
-        String timeStr = (coolingTicks / 20) + "s";
+        String timeStr = Component.translatable("gui.hephaestus.time_seconds", coolingTicks / 20).getString();
         int x = 72 - font.width(timeStr) / 2;
         graphics.drawString(font, timeStr, x, 2, Color.GRAY.getRGB(), false);
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public List<Component> getTooltipStrings(ModRecipes.CastingTableRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
-        if (recipe.cast() != null && !recipe.cast().isEmpty()) {
-            if (mouseX >= 63 && mouseX <= 63 + 13 && mouseY >= 39 && mouseY <= 39 + 11) {
-                return Collections.singletonList(Component.literal("Cast Consumed: " + recipe.castConsumed()).withStyle(ChatFormatting.GRAY));
-            }
+    public void getTooltip(ITooltipBuilder tooltip, ModRecipes.CastingTableRecipe recipe,
+                           IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (recipe.cast() != null && !recipe.cast().isEmpty()
+                && mouseX >= 63 && mouseX <= 76 && mouseY >= 39 && mouseY <= 50) {
+            tooltip.add(Component.translatable(recipe.castConsumed()
+                    ? "gui.hephaestus.cast_consumed"
+                    : "gui.hephaestus.cast_reusable").withStyle(ChatFormatting.GRAY));
         }
-        return Collections.emptyList();
     }
 }

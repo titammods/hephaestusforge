@@ -434,6 +434,10 @@
       "required": false
     },
     {
+      "id": "hephaestus:molten_replica_block",
+      "required": false
+    },
+    {
       "id": "hephaestus:molten_heavy_core_block",
       "required": false
     },

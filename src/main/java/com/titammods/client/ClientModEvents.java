@@ -33,6 +33,7 @@ public class ClientModEvents {
     public static void register(IEventBus modEventBus) {
         modEventBus.addListener(ClientModEvents::onClientExtensions);
         modEventBus.addListener(ClientModEvents::onClientSetup);
+        modEventBus.addListener(com.titammods.client.model.FluidTextureModel::onModifyBakingResult);
     }
 
     private static void onClientExtensions(RegisterClientExtensionsEvent event) {
@@ -40,18 +41,24 @@ public class ClientModEvents {
             MoltenFluidSet set = HephaestusFluids.SETS.get(material);
             if (set == null) continue;
 
+            final ResourceLocation still = material.texture == null
+                    ? ResourceLocation.fromNamespaceAndPath("hephaestus", "fluid/liquid/molten_metal")
+                    : ResourceLocation.fromNamespaceAndPath(TitamMods.MODID, material.texture + "/still");
+            final ResourceLocation flow = material.texture == null
+                    ? ResourceLocation.fromNamespaceAndPath("hephaestus", "fluid/liquid/molten_metal_flow")
+                    : ResourceLocation.fromNamespaceAndPath(TitamMods.MODID, material.texture + "/flowing");
+            final int tint = material.tint();
+
             event.registerFluidType(new IClientFluidTypeExtensions() {
-                private static final ResourceLocation STILL = ResourceLocation.fromNamespaceAndPath("hephaestus", "fluid/liquid/molten_metal");
-                private static final ResourceLocation FLOW = ResourceLocation.fromNamespaceAndPath("hephaestus", "fluid/liquid/molten_metal_flow");
                 @Override
-                public ResourceLocation getStillTexture() { return STILL; }
+                public ResourceLocation getStillTexture() { return still; }
                 @Override
-                public ResourceLocation getFlowingTexture() { return FLOW; }
+                public ResourceLocation getFlowingTexture() { return flow; }
                 @Override
-                public int getTintColor() { return material.color; }
+                public int getTintColor() { return tint; }
                 @Override
                 public int getTintColor(net.minecraft.world.level.material.FluidState state, net.minecraft.world.level.BlockAndTintGetter level, net.minecraft.core.BlockPos pos) {
-                    return material.color;
+                    return tint;
                 }
             }, set.fluidType.get());
         }
@@ -133,7 +140,7 @@ public class ClientModEvents {
             if (set == null) continue;
 
             event.register((stack, tintIndex) -> {
-                return tintIndex == 1 ? material.color : 0xFFFFFFFF;
+                return tintIndex == 1 ? material.tint() : 0xFFFFFFFF;
             }, set.bucket.get());
         }
     }
@@ -148,8 +155,6 @@ public class ClientModEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.BASIN.get(), BasinRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.TABLE.get(), TableRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SMELTERY_CONTROLLER.get(), com.titammods.client.render.SmelteryControllerRenderer::new);
-        event.registerBlockEntityRenderer(ModBlockEntities.SEARED_DRAIN.get(), com.titammods.client.render.SmelteryIORenderer::new);
-        event.registerBlockEntityRenderer(ModBlockEntities.SEARED_CHUTE.get(), com.titammods.client.render.SmelteryIORenderer::new);
     }
 
     @SubscribeEvent

@@ -1,5 +1,6 @@
 {
   "parent": "neoforge:item/bucket",
+  "apply_fluid_luminosity": false,
   "fluid": "hephaestus:molten_energetic_silver",
   "loader": "neoforge:fluid_container"
 }

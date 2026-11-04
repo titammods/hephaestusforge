@@ -1,5 +1,7 @@
 package com.titammods.block;
 
+import com.titammods.recipe.HephaestusRecipeCache;
+
 import com.titammods.menu.MelterMenu;
 import com.titammods.setup.ModBlockEntities;
 import com.titammods.setup.ModRecipes;
@@ -18,7 +20,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -213,15 +214,7 @@ public class MelterBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private int getTemperatureForFuel(FluidStack fluid, Level level) {
-        if (fluid.isEmpty()) return 0;
-        int maxTemp = 0;
-        for (var holder : level.getRecipeManager().getAllRecipesFor(ModRecipes.MELTING_TYPE.get())) {
-            ModRecipes.MeltingRecipe recipe = holder.value();
-            if (recipe.fuel().getFluid().isSame(fluid.getFluid())) {
-                maxTemp = Math.max(maxTemp, recipe.temperature());
-            }
-        }
-        return maxTemp;
+        return HephaestusRecipeCache.fuelTemperature(level, fluid);
     }
 
     public void tick(Level level, BlockPos pos, BlockState blockState) {
@@ -254,10 +247,8 @@ public class MelterBlockEntity extends BlockEntity implements MenuProvider {
                 continue;
             }
 
-            var recipeHolder = level.getRecipeManager()
-                    .getRecipeFor(ModRecipes.MELTING_TYPE.get(), new SingleRecipeInput(stack), level)
-                    .orElse(null);
-            if (recipeHolder == null) {
+            ModRecipes.MeltingRecipe recipe = HephaestusRecipeCache.melting(level, stack);
+            if (recipe == null) {
                 if (this.state[i] != 3) {
                     progress[i] = 0; maxProgress[i] = 100; this.state[i] = 3;
                     isDirty = true;
@@ -265,7 +256,6 @@ public class MelterBlockEntity extends BlockEntity implements MenuProvider {
                 continue;
             }
 
-            ModRecipes.MeltingRecipe recipe = recipeHolder.value();
             if (maxProgress[i] != recipe.time()) {
                 maxProgress[i] = recipe.time();
                 isDirty = true;

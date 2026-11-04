@@ -1,5 +1,7 @@
 package com.titammods.block;
 
+import com.titammods.recipe.HephaestusRecipeCache;
+
 import com.titammods.setup.ModBlockEntities;
 import com.titammods.setup.ModRecipes;
 import net.minecraft.core.BlockPos;
@@ -63,17 +65,7 @@ public class TableBlockEntity extends BlockEntity {
             if (!fluid.isEmpty() && !FluidStack.isSameFluidSameComponents(fluid, resource)) return 0;
 
             ItemStack currentMold = inventory.getStackInSlot(0);
-            ModRecipes.CastingTableRecipe matchedRecipe = null;
-
-            for (var recipeHolder : level.getRecipeManager().getAllRecipesFor(ModRecipes.CASTING_TABLE_TYPE.get())) {
-                ModRecipes.CastingTableRecipe recipe = recipeHolder.value();
-                boolean moldMatches = (recipe.cast().isEmpty() && currentMold.isEmpty()) || recipe.cast().test(currentMold);
-
-                if (moldMatches && recipe.fluid().getFluid() == resource.getFluid()) {
-                    matchedRecipe = recipe;
-                    break;
-                }
-            }
+            ModRecipes.CastingTableRecipe matchedRecipe = HephaestusRecipeCache.table(level, currentMold, resource.getFluid());
 
             if (matchedRecipe == null) return 0;
 
@@ -179,17 +171,7 @@ public class TableBlockEntity extends BlockEntity {
         }
 
         ItemStack currentMold = inventory.getStackInSlot(0);
-        ModRecipes.CastingTableRecipe matchedRecipe = null;
-
-        for (var recipeHolder : level.getRecipeManager().getAllRecipesFor(ModRecipes.CASTING_TABLE_TYPE.get())) {
-            ModRecipes.CastingTableRecipe recipe = recipeHolder.value();
-            boolean moldMatches = (recipe.cast().isEmpty() && currentMold.isEmpty()) || recipe.cast().test(currentMold);
-
-            if (moldMatches && recipe.fluid().getFluid() == currentFluid.getFluid() && currentFluid.getAmount() >= recipe.fluid().getAmount()) {
-                matchedRecipe = recipe;
-                break;
-            }
-        }
+        ModRecipes.CastingTableRecipe matchedRecipe = HephaestusRecipeCache.table(level, currentMold, currentFluid.getFluid(), currentFluid.getAmount());
 
         if (matchedRecipe != null && currentFluid.getAmount() == matchedRecipe.fluid().getAmount()) {
             coolingTime++;

@@ -513,5 +513,13 @@
   "block.hephaestus.molten_vibranium_block": "Molten Vibranium",
   "fluid_type.hephaestus.molten_unobtainium": "Molten Unobtainium",
   "item.hephaestus.molten_unobtainium_bucket": "Molten Unobtainium Bucket",
-  "block.hephaestus.molten_unobtainium_block": "Molten Unobtainium"
+  "block.hephaestus.molten_unobtainium_block": "Molten Unobtainium",
+
+  "gui.hephaestus.time_seconds": "%ss",
+  "gui.hephaestus.temperature_value": "%s°C",
+  "gui.hephaestus.cast_consumed": "Cast Consumed",
+  "gui.hephaestus.cast_reusable": "Cast Reusable",
+  "fluid_type.hephaestus.molten_replica": "Molten Replica",
+  "item.hephaestus.molten_replica_bucket": "Molten Replica Bucket",
+  "block.hephaestus.molten_replica_block": "Molten Replica"
 }

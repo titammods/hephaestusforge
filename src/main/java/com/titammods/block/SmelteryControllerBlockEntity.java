@@ -1,5 +1,7 @@
 package com.titammods.block;
 
+import com.titammods.recipe.HephaestusRecipeCache;
+
 import com.titammods.block.module.EntityMeltingModule;
 import com.titammods.block.multiblock.IDisplayFluidListener;
 import com.titammods.block.multiblock.SmelteryFluidHandler;
@@ -257,14 +259,24 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
     }
 
     @Override
+    public void onDataPacket(net.minecraft.network.Connection net, ClientboundBlockEntityDataPacket pkt, net.minecraft.core.HolderLookup.Provider provider) {
+        FluidStack old = displayFluid;
+        super.onDataPacket(net, pkt, provider);
+        refreshModelIfChanged(old);
+    }
+
+    @Override
     public void handleUpdateTag(CompoundTag tag, net.minecraft.core.HolderLookup.Provider provider) {
+        FluidStack old = displayFluid;
         super.handleUpdateTag(tag, provider);
+        refreshModelIfChanged(old);
+    }
 
+    private void refreshModelIfChanged(FluidStack old) {
+        if (level == null || !level.isClientSide()) return;
+        if (FluidStack.isSameFluidSameComponents(old, displayFluid) && old.isEmpty() == displayFluid.isEmpty()) return;
         requestModelDataUpdate();
-
-        if (this.level != null && this.level.isClientSide) {
-            this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
-        }
+        level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
@@ -352,15 +364,17 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
             }
         }
 
+        FluidStack newFuel;
         if (activeFuel.isEmpty()) {
-            this.currentFuel = FluidStack.EMPTY;
+            newFuel = FluidStack.EMPTY;
         } else {
             activeFuel.setAmount(totalAmount);
-            this.currentFuel = activeFuel;
+            newFuel = activeFuel;
         }
-
+        boolean fuelChanged = !FluidStack.matches(this.currentFuel, newFuel) || this.fuelCapacity != totalCapacity;
+        this.currentFuel = newFuel;
         this.fuelCapacity = totalCapacity;
-        this.setChanged();
+        if (fuelChanged) this.setChanged();
     }
 
     private void updateMeltingTimes() {
@@ -382,14 +396,9 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
                     changed = true;
                 }
             } else {
-                var recipeHolder = level.getRecipeManager().getRecipeFor(
-                        ModRecipes.MELTING_TYPE.get(),
-                        new net.minecraft.world.item.crafting.SingleRecipeInput(stack),
-                        level
-                ).orElse(null);
+                var recipe = HephaestusRecipeCache.melting(level, stack);
 
-                if (recipeHolder != null) {
-                    var recipe = recipeHolder.value();
+                if (recipe != null) {
                     int reqTime = recipe.time();
                     int state = 0;
 
@@ -460,14 +469,10 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
 
             meltingProgress[i]++;
             if (meltingProgress[i] >= meltingTime[i]) {
-                var recipeHolder = level.getRecipeManager().getRecipeFor(
-                        ModRecipes.MELTING_TYPE.get(),
-                        new net.minecraft.world.item.crafting.SingleRecipeInput(stack),
-                        level
-                ).orElse(null);
+                var recipe = HephaestusRecipeCache.melting(level, stack);
 
-                if (recipeHolder != null) {
-                    FluidStack output = recipeHolder.value().scaledOutput(stack).copy();
+                if (recipe != null) {
+                    FluidStack output = recipe.scaledOutput(stack).copy();
                     if (fluidTank.fill(output, IFluidHandler.FluidAction.SIMULATE) < output.getAmount()) {
                         meltingProgress[i] = meltingTime[i];
                         meltingState[i] = 3;
@@ -491,13 +496,14 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
         boolean changed = false;
         var alloyRecipes = level.getRecipeManager().getAllRecipesFor(com.titammods.setup.ModRecipes.ALLOY_TYPE.get());
 
+        int availableTemp = this.temperature;
+        if (this.fuel <= 0 && !this.currentFuel.isEmpty()) {
+            availableTemp = getTemperatureForFuel(this.currentFuel);
+        }
+
         for (var holder : alloyRecipes) {
             com.titammods.recipe.AlloyRecipe recipe = holder.value();
 
-            int availableTemp = this.temperature;
-            if (this.fuel <= 0 && !this.currentFuel.isEmpty()) {
-                availableTemp = getTemperatureForFuel(this.currentFuel);
-            }
             if (availableTemp < recipe.temperature()) continue;
 
             SmelteryFluidHandler simulated = new SmelteryFluidHandler();
@@ -572,15 +578,7 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
     }
 
     private int getTemperatureForFuel(FluidStack fluid) {
-        if (fluid.isEmpty() || level == null) return 0;
-        int maxTemp = 0;
-        for (var holder : level.getRecipeManager().getAllRecipesFor(ModRecipes.MELTING_TYPE.get())) {
-            ModRecipes.MeltingRecipe recipe = holder.value();
-            if (recipe.fuel().getFluid().isSame(fluid.getFluid())) {
-                maxTemp = Math.max(maxTemp, recipe.temperature());
-            }
-        }
-        return maxTemp;
+        return HephaestusRecipeCache.fuelTemperature(level, fluid);
     }
 
     private void checkMultiblockStructure() {
@@ -659,6 +657,8 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
             drain.setControllerPos(target);
         if (be instanceof SearedChuteBlockEntity chute && !Objects.equals(chute.getControllerPos(), target))
             chute.setControllerPos(target);
+        if (link && be instanceof IDisplayFluidListener listener)
+            listener.notifyDisplayFluidUpdated(displayFluid);
     }
 
     private void checkInventorySync() {

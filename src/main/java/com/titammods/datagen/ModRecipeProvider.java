@@ -165,6 +165,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         addMeltingItem(output, Items.LAPIS_LAZULI, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_LAPIS).source.get(), 10, 900, 40, "misc/lapis/gem");
         addMeltingTag(output, "storage_blocks/lapis", HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_LAPIS).source.get(), 90, 900, 120, "misc/lapis/block");
         addCastingBasin(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_LAPIS).source.get(), 90, Items.LAPIS_BLOCK, 120, "misc/lapis/block");
+
+        addCastingBasin(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_COPPER).source.get(), 810,
+                ModBlocks.SEARED_BRICKS.get(), ModBlocks.SMELTERY_CONTROLLER.get(), 200, "smeltery_controller");
         addMeltingItem(output, Items.ENDER_PEARL, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_ENDER).source.get(), 90, 1000, 100, "misc/ender/pearl");
         addMeltingItem(output, Items.ENDER_EYE, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_ENDER).source.get(), 90, 1000, 100, "misc/ender/eye");
         addCastingTable(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_ENDER).source.get(), 90, ModItems.GEM_CAST.get(), false, Items.ENDER_PEARL, 60, "misc/ender/pearl");
@@ -248,6 +251,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerNodeworksCompat(output);
         registerOccultismCompat(output);
         registerOritechCompat(output);
+        registerReplicationCompat(output);
         registerStellarisCompat(output);
         registerThaumaturgeCompat(output);
         registerXyCraftWorldCompat(output);
@@ -769,6 +773,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 id(mod, "fluxite_block"), id(mod, "fluxite"), prefix);
     }
 
+    private void registerReplicationCompat(RecipeOutput output) {
+        RecipeOutput modOutput = output.withConditions(modLoaded("replication"));
+        String mod = "replication", prefix = "replication_compat/";
+
+        registerMetalById(modOutput, moltenId(HephaestusFluids.Material.MOLTEN_REPLICA), 1000, "replica",
+                id(mod, "replica_block"), id(mod, "replica_ingot"), id(mod, "raw_replica"),
+                null, null, null, null, null, prefix);
+    }
+
     private void registerStellarisCompat(RecipeOutput output) {
         RecipeOutput modOutput = output.withConditions(modLoaded("stellaris"));
         String mod = "stellaris", prefix = "stellaris_compat/";
@@ -940,6 +953,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     private void addCastingBasin(RecipeOutput output, Fluid fluid, int amount, ItemLike result, int time, String savePath) {
         ModRecipes.CastingBasinRecipe recipe = new ModRecipes.CastingBasinRecipe(new FluidStack(fluid, amount), new ItemStack(result), time);
+        output.accept(ResourceLocation.fromNamespaceAndPath(TitamMods.MODID, "smeltery/casting/basin/" + savePath), recipe, null);
+    }
+
+    private void addCastingBasin(RecipeOutput output, Fluid fluid, int amount, ItemLike castItem, ItemLike result, int time, String savePath) {
+        ModRecipes.CastingBasinRecipe recipe = new ModRecipes.CastingBasinRecipe(
+                Ingredient.of(castItem), new FluidStack(fluid, amount),
+                BuiltInRegistries.ITEM.getKey(result.asItem()), 1, time);
         output.accept(ResourceLocation.fromNamespaceAndPath(TitamMods.MODID, "smeltery/casting/basin/" + savePath), recipe, null);
     }
 

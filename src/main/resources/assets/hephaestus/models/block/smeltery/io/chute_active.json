@@ -1,5 +1,5 @@
 {
-  "parent": "hephaestus:block/template/chute",
+  "parent": "hephaestus:block/template/chute_fluid",
   "textures": {
     "top": "hephaestus:block/smeltery/io/chute_top_active",
     "back": "hephaestus:block/smeltery/io/back",

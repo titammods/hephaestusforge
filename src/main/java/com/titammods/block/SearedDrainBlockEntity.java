@@ -119,13 +119,23 @@ public class SearedDrainBlockEntity extends BlockEntity implements IDisplayFluid
     }
 
     @Override
+    public void onDataPacket(net.minecraft.network.Connection net, ClientboundBlockEntityDataPacket pkt, net.minecraft.core.HolderLookup.Provider provider) {
+        FluidStack old = displayFluid;
+        super.onDataPacket(net, pkt, provider);
+        refreshModelIfChanged(old);
+    }
+
+    @Override
     public void handleUpdateTag(CompoundTag tag, net.minecraft.core.HolderLookup.Provider provider) {
+        FluidStack old = displayFluid;
         super.handleUpdateTag(tag, provider);
+        refreshModelIfChanged(old);
+    }
 
+    private void refreshModelIfChanged(FluidStack old) {
+        if (level == null || !level.isClientSide()) return;
+        if (FluidStack.isSameFluidSameComponents(old, displayFluid) && old.isEmpty() == displayFluid.isEmpty()) return;
         requestModelDataUpdate();
-
-        if (this.level != null && this.level.isClientSide) {
-            this.level.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
-        }
+        level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
     }
 }

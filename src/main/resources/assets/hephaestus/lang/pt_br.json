@@ -513,5 +513,13 @@
   "block.hephaestus.molten_vibranium_block": "Vibranium Derretido",
   "fluid_type.hephaestus.molten_unobtainium": "Unobtainium Derretido",
   "item.hephaestus.molten_unobtainium_bucket": "Balde de Unobtainium Derretido",
-  "block.hephaestus.molten_unobtainium_block": "Unobtainium Derretido"
+  "block.hephaestus.molten_unobtainium_block": "Unobtainium Derretido",
+
+  "gui.hephaestus.time_seconds": "%ss",
+  "gui.hephaestus.temperature_value": "%s°C",
+  "gui.hephaestus.cast_consumed": "Molde consumido",
+  "gui.hephaestus.cast_reusable": "Molde reutilizável",
+  "fluid_type.hephaestus.molten_replica": "Réplica Derretida",
+  "item.hephaestus.molten_replica_bucket": "Balde de Réplica Derretida",
+  "block.hephaestus.molten_replica_block": "Réplica Derretida"
 }

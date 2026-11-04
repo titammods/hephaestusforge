@@ -18,42 +18,48 @@ import org.joml.Matrix4f;
 
 public class BasinRenderer implements BlockEntityRenderer<BasinBlockEntity> {
 
+    private static final float OUTPUT_SCALE = 12.0f / 16.0f;
+    private static final float CAST_SCALE   = 11.95f / 16.0f;
+
     public BasinRenderer(BlockEntityRendererProvider.Context context) {}
 
     @Override
     public void render(BasinBlockEntity entity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
 
-        ItemStack output = entity.inventory.getStackInSlot(0);
+        ItemStack output = entity.inventory.getStackInSlot(BasinBlockEntity.OUTPUT);
 
         if (!output.isEmpty()) {
-            poseStack.pushPose();
-            poseStack.translate(0.5D, 0.625D, 0.5D);
-            poseStack.scale(0.75f, 0.75f, 0.75f);
-
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    output, ItemDisplayContext.NONE, packedLight, packedOverlay, poseStack, bufferSource, entity.getLevel(), 0
-            );
-            poseStack.popPose();
+            renderItem(entity, output, OUTPUT_SCALE, poseStack, bufferSource, packedLight, packedOverlay);
             return;
         }
 
         FluidStack fluidStack = entity.tank.getFluid();
-        if (fluidStack.isEmpty()) return;
+        if (!fluidStack.isEmpty() && entity.renderTimer <= 0) {
+            renderFluid(entity, fluidStack, poseStack, bufferSource, packedLight);
+        }
+
+        ItemStack cast = entity.inventory.getStackInSlot(BasinBlockEntity.CAST);
+        if (!cast.isEmpty()) {
+            renderItem(entity, cast, CAST_SCALE, poseStack, bufferSource, packedLight, packedOverlay);
+        }
+    }
+
+    private static void renderItem(BasinBlockEntity entity, ItemStack stack, float scale, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+        poseStack.pushPose();
+        poseStack.translate(0.5D, 0.625D, 0.5D);
+        poseStack.scale(scale, scale, scale);
+        Minecraft.getInstance().getItemRenderer().renderStatic(
+                stack, ItemDisplayContext.NONE, packedLight, packedOverlay, poseStack, bufferSource, entity.getLevel(), 0
+        );
+        poseStack.popPose();
+    }
+
+    private void renderFluid(BasinBlockEntity entity, FluidStack fluidStack, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
 
         IClientFluidTypeExtensions clientFluid = IClientFluidTypeExtensions.of(fluidStack.getFluid());
         TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(clientFluid.getStillTexture(fluidStack));
 
-        int recipeAmount = fluidStack.getAmount();
-        if (entity.getLevel() != null) {
-            for (var holder : entity.getLevel().getRecipeManager()
-                    .getAllRecipesFor(com.titammods.setup.ModRecipes.CASTING_BASIN_TYPE.get())) {
-                var recipe = holder.value();
-                if (recipe.input().getFluid() == fluidStack.getFluid()) {
-                    recipeAmount = recipe.input().getAmount();
-                    break;
-                }
-            }
-        }
+        int recipeAmount = entity.fillTarget > 0 ? entity.fillTarget : entity.tank.getCapacity();
         float fillPercentage = Math.min(1f, (float) fluidStack.getAmount() / recipeAmount);
 
         float minX = 0.126f, maxX = 0.874f;

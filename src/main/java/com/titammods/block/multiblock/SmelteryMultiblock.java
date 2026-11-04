@@ -13,6 +13,7 @@ import java.util.List;
 
 public class SmelteryMultiblock {
     private final Level level;
+    private static final int MAX_SIDE = 15;
     private final BlockPos controllerPos;
 
     public boolean isValid = false;
@@ -63,10 +64,15 @@ public class SmelteryMultiblock {
         int minX = floorCenter.getX(), maxX = floorCenter.getX();
         int minZ = floorCenter.getZ(), maxZ = floorCenter.getZ();
 
-        while (minX > floorCenter.getX() - 7 && isInnerBlock(level.getBlockState(new BlockPos(minX - 1, floorY + 1, floorCenter.getZ())))) minX--;
-        while (maxX < floorCenter.getX() + 7 && isInnerBlock(level.getBlockState(new BlockPos(maxX + 1, floorY + 1, floorCenter.getZ())))) maxX++;
-        while (minZ > floorCenter.getZ() - 7 && isInnerBlock(level.getBlockState(new BlockPos(floorCenter.getX(), floorY + 1, minZ - 1)))) minZ--;
-        while (maxZ < floorCenter.getZ() + 7 && isInnerBlock(level.getBlockState(new BlockPos(floorCenter.getX(), floorY + 1, maxZ + 1)))) maxZ++;
+        int xBlocks = 1;
+        int zBlocks = 1;
+
+        while (xBlocks <= MAX_SIDE && isInnerBlock(level.getBlockState(new BlockPos(minX - 1, floorY + 1, floorCenter.getZ())))) { xBlocks++; minX--; }
+        while (xBlocks <= MAX_SIDE && isInnerBlock(level.getBlockState(new BlockPos(maxX + 1, floorY + 1, floorCenter.getZ())))) { xBlocks++; maxX++; }
+        if (xBlocks > MAX_SIDE) return;
+        while (zBlocks <= MAX_SIDE && isInnerBlock(level.getBlockState(new BlockPos(floorCenter.getX(), floorY + 1, minZ - 1)))) { zBlocks++; minZ--; }
+        while (zBlocks <= MAX_SIDE && isInnerBlock(level.getBlockState(new BlockPos(floorCenter.getX(), floorY + 1, maxZ + 1)))) { zBlocks++; maxZ++; }
+        if (zBlocks > MAX_SIDE) return;
 
         for (int x = minX; x <= maxX; x++) {
             for (int z = minZ; z <= maxZ; z++) {

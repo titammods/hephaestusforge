@@ -58,11 +58,13 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void createFluidBucketvanilla(String name, ModFluids.MoltenFluid fluid) {
         withExistingParent(name + "_bucket", net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "item/bucket"))
                 .customLoader(net.neoforged.neoforge.client.model.generators.loaders.DynamicFluidContainerModelBuilder::begin)
-                .fluid(fluid.source.get());
+                .fluid(fluid.source.get())
+                .applyFluidLuminosity(false);
     }
     private void createFluidBucket(String name, com.titammods.registry.fluids.MoltenFluidSet fluidSet) {
         withExistingParent(name + "_bucket", net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("neoforge", "item/bucket"))
                 .customLoader(net.neoforged.neoforge.client.model.generators.loaders.DynamicFluidContainerModelBuilder::begin)
-                .fluid(fluidSet.source.get());
+                .fluid(fluidSet.source.get())
+                .applyFluidLuminosity(false);
     }
 }

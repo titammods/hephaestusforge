@@ -1,5 +1,6 @@
 {
   "parent": "neoforge:item/bucket",
+  "apply_fluid_luminosity": false,
   "fluid": "hephaestus:molten_ancient_debris",
   "loader": "neoforge:fluid_container"
 }

@@ -61,7 +61,7 @@ public class SearedBasinBlock extends SearedFacingBlock implements EntityBlock {
         if (!level.isClientSide) {
             BlockEntity entity = level.getBlockEntity(pos);
             if (entity instanceof BasinBlockEntity basin) {
-                basin.extractItem(player);
+                basin.interact(player);
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
