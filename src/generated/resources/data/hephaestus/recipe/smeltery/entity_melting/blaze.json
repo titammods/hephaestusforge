@@ -2,7 +2,7 @@
   "type": "hephaestus:entity_melting",
   "entity": "minecraft:blaze",
   "result": {
-    "amount": 45,
+    "amount": 90,
     "id": "hephaestus:molten_blaze"
   }
 }

@@ -5,7 +5,7 @@
     "id": "minecraft:lava"
   },
   "ingredient": {
-    "item": "minecraft:redstone_block"
+    "tag": "c:storage_blocks/redstone"
   },
   "result": {
     "amount": 90,

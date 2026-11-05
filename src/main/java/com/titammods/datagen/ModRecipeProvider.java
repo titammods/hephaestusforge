@@ -140,8 +140,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerMetal(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_IRON).source.get(), 900, "iron", Items.IRON_BLOCK, Items.IRON_INGOT, Items.RAW_IRON, Items.IRON_NUGGET, null, null, null, null, "");
         registerMetal(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_GOLD).source.get(), 900, "gold", Items.GOLD_BLOCK, Items.GOLD_INGOT, Items.RAW_GOLD, Items.GOLD_NUGGET, null, null, null, null, "");
         registerMetal(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_COPPER).source.get(), 900, "copper", Items.COPPER_BLOCK, Items.COPPER_INGOT, Items.RAW_COPPER, null, null, null, null, null, "");
-        registerMetal(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_STEEL).source.get(), 900, "steel", ModBlocks.STEEL_BLOCK.get(), ModItems.STEEL_INGOT.get(), ModItems.RAW_STEEL.get(), ModItems.STEEL_NUGGET.get(), ModItems.STEEL_POWDER.get(), null, null, null, "");
-        registerMetal(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_NETHERITE).source.get(), 1500, "netherite", Items.NETHERITE_BLOCK, Items.NETHERITE_INGOT, null, null, null, null, null, null, "");
+        registerMetal(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_STEEL).source.get(), 1000, "steel", ModBlocks.STEEL_BLOCK.get(), ModItems.STEEL_INGOT.get(), ModItems.RAW_STEEL.get(), ModItems.STEEL_NUGGET.get(), ModItems.STEEL_POWDER.get(), null, null, null, "");
+        registerMetal(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_NETHERITE).source.get(), 2000, "netherite", Items.NETHERITE_BLOCK, Items.NETHERITE_INGOT, null, null, null, null, null, null, "");
 
         registerMetal(output, ModFluids.MOLTEN_COBALT.source.get(), 1100, "cobalt", ModBlocks.COBALT_BLOCK.get(), ModItems.COBALT_INGOT.get(), ModItems.RAW_COBALT.get(), ModItems.COBALT_NUGGET.get(), ModItems.COBALT_POWDER.get(), null, null, null, "");
 
@@ -153,7 +153,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         addMeltingItem(output, Items.GLOWSTONE,       HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_GLOWSTONE).source.get(), 200, 800,  120, "misc/glowstone/block");
         addMeltingItem(output, Items.GLOWSTONE_DUST,  HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_GLOWSTONE).source.get(),  50, 800,  60,  "misc/glowstone/dust");
         addCastingBasin(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_GLOWSTONE).source.get(), 200, Items.GLOWSTONE,     120, "misc/glowstone/block");
-        addMeltingItem(output, Items.REDSTONE_BLOCK, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_REDSTONE).source.get(), 90, 600, 120, "misc/redstone/block");
+        addMeltingTag(output, "storage_blocks/redstone", HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_REDSTONE).source.get(), 90, 600, 120, "misc/redstone/block");
         addMeltingItem(output, Items.REDSTONE,       HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_REDSTONE).source.get(), 10, 600, 40, "misc/redstone/dust");
         addCastingBasin(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_REDSTONE).source.get(), 90, Items.REDSTONE_BLOCK, 120, "misc/redstone/block");
         addMeltingItem(output, Items.OBSIDIAN, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_OBSIDIAN).source.get(), 288, 1400, 200, "misc/obsidian");
@@ -188,6 +188,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         addMeltingItem(output, Items.COAL,     HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_CARBON).source.get(), 90, 600, 100, "misc/carbon/coal");
         addMeltingTag(output, "storage_blocks/coal", HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_CARBON).source.get(), 810, 600, 200, "misc/carbon/coal_block");
         addCastingBasin(output, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_CARBON).source.get(), 810, Items.COAL_BLOCK, 200, "misc/carbon/coal_block");
+        addMeltingItem(output, Items.BLAZE_ROD, ModFluids.MOLTEN_BLAZE.source.get(), 250, 800, 100, "misc/molten_blaze");
         addMeltingItem(output, Items.HONEYCOMB, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_WAX).source.get(), 50, 320, 60, "misc/wax_from_honeycomb");
         addMeltingItem(output, Items.HONEYCOMB_BLOCK, HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_WAX).source.get(), 200, 320, 120, "misc/wax_from_block");
         RecipeOutput mekOutput = output.withConditions(modLoaded("mekanism"));
@@ -256,60 +257,32 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerThaumaturgeCompat(output);
         registerXyCraftWorldCompat(output);
 
-        addAlloyRecipe(output,
-                List.of(
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_COPPER).source.get(), 100),
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_ZINC).source.get(), 100)
-                ),
-                new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_BRASS).source.get(), 200),
-                650,
-                "brass");
-        addAlloyRecipe(output,
-                List.of(
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_COPPER).source.get(), 300),
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_TIN).source.get(), 100)
-                ),
-                new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_BRONZE).source.get(), 400),
-                700,
-                "bronze");
-        addAlloyRecipe(output,
-                List.of(
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_GOLD).source.get(), 100),
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_SILVER).source.get(), 100)
-                ),
-                new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_ELECTRUM).source.get(), 200),
-                760,
-                "electrum");
-        addAlloyRecipe(output,
-                List.of(
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_IRON).source.get(), 200),
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_NICKEL).source.get(), 100)
-                ),
-                new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_INVAR).source.get(), 300),
-                810,
-                "invar");
-        addAlloyRecipe(output,
-                List.of(
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_COPPER).source.get(), 100),
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_NICKEL).source.get(), 100)
-                ),
-                new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_CONSTANTAN).source.get(), 200),
-                920,
-                "constantan");
-        addAlloyRecipe(output,
-                List.of(
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_ANCIENT_DEBRIS).source.get(), 270),
-                        new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_GOLD).source.get(), 270)
-                ),
-                new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_NETHERITE).source.get(), 270),
-                2000,
-                "netherite");
+        addAlloyRecipe(output, List.of(molten(HephaestusFluids.Material.MOLTEN_COPPER, 90), molten(HephaestusFluids.Material.MOLTEN_ZINC, 90)),
+                molten(HephaestusFluids.Material.MOLTEN_BRASS, 180), 650, "brass");
+        addAlloyRecipe(output, List.of(molten(HephaestusFluids.Material.MOLTEN_COPPER, 270), molten(HephaestusFluids.Material.MOLTEN_TIN, 90)),
+                molten(HephaestusFluids.Material.MOLTEN_BRONZE, 360), 700, "bronze");
+        addAlloyRecipe(output, List.of(molten(HephaestusFluids.Material.MOLTEN_GOLD, 90), molten(HephaestusFluids.Material.MOLTEN_SILVER, 90)),
+                molten(HephaestusFluids.Material.MOLTEN_ELECTRUM, 180), 760, "electrum");
+        addAlloyRecipe(output, List.of(molten(HephaestusFluids.Material.MOLTEN_IRON, 180), molten(HephaestusFluids.Material.MOLTEN_NICKEL, 90)),
+                molten(HephaestusFluids.Material.MOLTEN_INVAR, 270), 900, "invar");
+        addAlloyRecipe(output, List.of(molten(HephaestusFluids.Material.MOLTEN_COPPER, 90), molten(HephaestusFluids.Material.MOLTEN_NICKEL, 90)),
+                molten(HephaestusFluids.Material.MOLTEN_CONSTANTAN, 180), 920, "constantan");
+        addAlloyRecipe(output, List.of(molten(HephaestusFluids.Material.MOLTEN_GOLD, 270), molten(HephaestusFluids.Material.MOLTEN_ANCIENT_DEBRIS, 270)),
+                molten(HephaestusFluids.Material.MOLTEN_NETHERITE, 360), 2000, "netherite");
+        addAlloyRecipe(output, List.of(molten(HephaestusFluids.Material.MOLTEN_IRON, 90), molten(HephaestusFluids.Material.MOLTEN_CARBON, 90)),
+                molten(HephaestusFluids.Material.MOLTEN_STEEL, 90), 1000, "steel");
 
         addEntityMelting(output, net.minecraft.world.entity.EntityType.BLAZE,
-                new FluidStack(ModFluids.MOLTEN_BLAZE.source.get(), 45), 2, "blaze");
+                new FluidStack(ModFluids.MOLTEN_BLAZE.source.get(), 90), 2, "blaze");
+        addEntityMelting(output, net.minecraft.world.entity.EntityType.MAGMA_CUBE,
+                new FluidStack(Fluids.LAVA, 45), 2, "magma_cube");
         addEntityMelting(output, net.minecraft.world.entity.EntityType.IRON_GOLEM,
                 new FluidStack(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_IRON).source.get(), 36), 4, "iron_golem");
 
+    }
+
+    private FluidStack molten(HephaestusFluids.Material material, int amount) {
+        return new FluidStack(HephaestusFluids.SETS.get(material).source.get(), amount);
     }
 
     private FluidStack fuelForTemp(int temp) {

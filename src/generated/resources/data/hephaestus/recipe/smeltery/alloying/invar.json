@@ -2,17 +2,17 @@
   "type": "hephaestus:alloying",
   "inputs": [
     {
-      "amount": 200,
+      "amount": 180,
       "id": "hephaestus:molten_iron"
     },
     {
-      "amount": 100,
+      "amount": 90,
       "id": "hephaestus:molten_nickel"
     }
   ],
   "output": {
-    "amount": 300,
+    "amount": 270,
     "id": "hephaestus:molten_invar"
   },
-  "temperature": 810
+  "temperature": 900
 }
