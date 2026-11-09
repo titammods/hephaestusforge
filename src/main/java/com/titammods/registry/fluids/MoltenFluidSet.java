@@ -16,6 +16,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -37,6 +38,11 @@ public class MoltenFluidSet {
                                 .density(2000)
                                 .viscosity(10000)
                                 .lightLevel(10)
+                                .motionScale(0.0023333333333333335D)
+                                .canSwim(false)
+                                .canDrown(false)
+                                .pathType(PathType.LAVA)
+                                .adjacentPathType(null)
                                 .sound(SoundActions.BUCKET_FILL,  SoundEvents.BUCKET_FILL_LAVA)
                                 .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA),
                         color

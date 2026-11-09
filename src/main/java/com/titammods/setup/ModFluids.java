@@ -18,6 +18,7 @@ import net.minecraft.world.level.material.LavaFluid;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.FluidType;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -56,7 +57,12 @@ public class ModFluids {
                                     .temperature(1300)
                                     .density(3000)
                                     .viscosity(6000)
-                                    .lightLevel(15),
+                                    .lightLevel(15)
+                                    .motionScale(0.0023333333333333335D)
+                                    .canSwim(false)
+                                    .canDrown(false)
+                                    .pathType(PathType.LAVA)
+                                    .adjacentPathType(null),
                             color
                     )
             );
