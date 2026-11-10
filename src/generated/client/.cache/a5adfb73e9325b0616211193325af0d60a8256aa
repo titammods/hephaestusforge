@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-22T18:49:04.5333321	Hephaestus Models
+// 26.1.2	2026-11-09T01:58:44.9667431	Hephaestus Models
 89244cb748372077cdca2a38926f912044a7f4d9 assets/hephaestus/atlases/blocks.json
 862467bfa08d14270ad5f0b0dc0be2052eb5b011 assets/hephaestus/blockstates/clear_glass.json
 76be65be9b69ef15356fac9703e47c93f5fbb33f assets/hephaestus/blockstates/clear_stained_glass.json
@@ -292,6 +292,7 @@ e6d6fd24110e2342a43206f1dc29fdd1b2cc6ac8 assets/hephaestus/items/raw_cobalt.json
 d6f406727dfd6b6a1ac2daa3253dd5797bd1ebb4 assets/hephaestus/items/raw_steel.json
 850e5c32b899ba0a69266bc2f519b7ea4587295a assets/hephaestus/items/rod_cast.json
 4a83a62142ea3803726a024b9423c9181974e8a5 assets/hephaestus/items/seared_basin.json
+76faa4168edee290bee281c331c64f63716fe72f assets/hephaestus/items/seared_battery.json
 65419d2d799c0e368209f392e3fd8b8fe5ff4cfc assets/hephaestus/items/seared_bricks.json
 735e9d8734e83ed1c89eb7e7acf18df5a5c48963 assets/hephaestus/items/seared_bricks_slab.json
 a194483e917f0fff2b35b4aee56f97882a8882dd assets/hephaestus/items/seared_bricks_stairs.json
@@ -310,6 +311,7 @@ fc0349704b82cb74cbd5e42e266c58bff11deacb assets/hephaestus/items/seared_cobble_s
 5f525a4faf1e914b102e4fe7e2f09c78fe8f07e5 assets/hephaestus/items/seared_creeper_stairs.json
 6c535dbb5febc19ca2aeda828de6f9961050d50c assets/hephaestus/items/seared_creeper_wall.json
 74cf675b18dfe7b1e6b98a41ce4b627532f82f6b assets/hephaestus/items/seared_drain.json
+8fb3658541d218915b8bbd997680af70ada8d2eb assets/hephaestus/items/seared_energy_port.json
 a0f9a90f98451ec264bb92f24493b1ac7fca27d2 assets/hephaestus/items/seared_fancy_bricks.json
 404d6f7ce5d0c16dbe21f6d71ff1ac9e47422ca7 assets/hephaestus/items/seared_fancy_bricks_slab.json
 7ac6ff164a8d2d105e4c7d7c6b9972635a447602 assets/hephaestus/items/seared_fancy_bricks_stairs.json

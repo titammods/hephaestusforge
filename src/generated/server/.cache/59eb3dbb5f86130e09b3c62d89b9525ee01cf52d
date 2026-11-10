@@ -1,10 +1,11 @@
-// 26.1.2	2026-06-05T01:17:30.9504393	Loot Tables
+// 26.1.2	2026-11-09T01:58:25.5669606	Loot Tables
 bfecac4668deb1ef4549e4fcef21b3de1d6b7e63 data/hephaestus/loot_table/blocks/clear_glass.json
 f1917c7ac5259e0e0fed35d8bd325815f31243cf data/hephaestus/loot_table/blocks/clear_stained_glass.json
 1e9a93679ae67beaedfa451ea5bbb0131f10d22d data/hephaestus/loot_table/blocks/clear_tinted_glass.json
 55af5a2147a380f67192e8255f4d2fb7b3d39ac3 data/hephaestus/loot_table/blocks/cobalt_block.json
 20615703ad5b62ee58b18a8638ef3cd6f0d0ac40 data/hephaestus/loot_table/blocks/raw_cobalt_block.json
 c604b270ec9a93f4c564d19e6f729a680a7fb326 data/hephaestus/loot_table/blocks/seared_basin.json
+3dfb87ad003e35c598f80c62075e6c656ef939d9 data/hephaestus/loot_table/blocks/seared_battery.json
 90fd5469b9e0feeb4ebff627e8c74d7f70b712b1 data/hephaestus/loot_table/blocks/seared_bricks.json
 e1c87477a3250fe505ccd4f666e9b6fedd5e5c52 data/hephaestus/loot_table/blocks/seared_bricks_slab.json
 b807d6aad3b38c2738475016c0da9938d7b6e758 data/hephaestus/loot_table/blocks/seared_bricks_stairs.json
@@ -23,6 +24,7 @@ f07149d88f7d2a9dbc07bd61222cdedf9489e3cf data/hephaestus/loot_table/blocks/seare
 0a80d53c0d08a811c63129dfd4a151c31ced08f0 data/hephaestus/loot_table/blocks/seared_creeper_stairs.json
 e44f4f729ca6c2c2bcc0db74930322c017107534 data/hephaestus/loot_table/blocks/seared_creeper_wall.json
 080d218e442185ba60e8e7665ee219c60d17183c data/hephaestus/loot_table/blocks/seared_drain.json
+8b16c3b73a557fa7dc77f51e0bb6f7e6fe8527e8 data/hephaestus/loot_table/blocks/seared_energy_port.json
 13fb1b7a86b72ae0a035485377aa793f4e38cae5 data/hephaestus/loot_table/blocks/seared_fancy_bricks.json
 bef31cc1f4561b23fd8aa5f2adca3fc7ef87abbf data/hephaestus/loot_table/blocks/seared_fancy_bricks_slab.json
 9f08c51e80ada58809bfc55271439209f9359e4e data/hephaestus/loot_table/blocks/seared_fancy_bricks_stairs.json

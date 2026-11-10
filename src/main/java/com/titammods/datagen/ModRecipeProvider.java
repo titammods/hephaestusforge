@@ -292,6 +292,20 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_forge_brick", this.has(ModItems.FORGE_BRICK.get()))
                 .save(this.output, rk("seared_drain"));
 
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.MISC, ModBlocks.SEARED_BATTERY.get(), 1)
+                .pattern("BBB").pattern("BRB").pattern("BBB")
+                .define('B', ModBlocks.SEARED_BRICKS.get())
+                .define('R', net.minecraft.tags.ItemTags.create(Identifier.fromNamespaceAndPath("c", "storage_blocks/redstone")))
+                .unlockedBy("has_seared_bricks", this.has(ModBlocks.SEARED_BRICKS.get()))
+                .save(this.output, rk("seared_battery"));
+
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.MISC, ModBlocks.SEARED_ENERGY_PORT.get(), 1)
+                .pattern("BBB").pattern("R R").pattern("BBB")
+                .define('B', ModItems.FORGE_BRICK.get())
+                .define('R', net.minecraft.tags.ItemTags.create(Identifier.fromNamespaceAndPath("c", "dusts/redstone")))
+                .unlockedBy("has_forge_brick", this.has(ModItems.FORGE_BRICK.get()))
+                .save(this.output, rk("seared_energy_port"));
+
         addCastingBasin(HephaestusFluids.SETS.get(HephaestusFluids.Material.MOLTEN_COPPER).source.get(), 810,
                 ModBlocks.SEARED_BRICKS.get(), ModBlocks.SMELTERY_CONTROLLER.get(), 200,
                 "smeltery_controller");

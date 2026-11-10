@@ -508,5 +508,15 @@
   "config.jade.plugin_hephaestus.melter_progress": "Progresso de derretimento do Fundidor",
   "fluid_type.hephaestus.molten_replica": "Réplica Derretida",
   "item.hephaestus.molten_replica_bucket": "Balde de Réplica Derretida",
-  "block.hephaestus.molten_replica_block": "Réplica Derretida"
+  "block.hephaestus.molten_replica_block": "Réplica Derretida",
+  "block.hephaestus.seared_battery": "Bateria Calcinada",
+  "item.hephaestus.seared_battery": "Bateria Calcinada",
+  "block.hephaestus.seared_energy_port": "Porta de Energia Calcinada",
+  "item.hephaestus.seared_energy_port": "Porta de Energia Calcinada",
+  "gui.hephaestus.smeltery.mixed_fuel": "A Fundição não pode usar Tanques de Combustível e Baterias ao mesmo tempo!",
+  "gui.hephaestus.energy": "Energia",
+  "gui.hephaestus.energy_amount": "%s / %s FE",
+  "gui.hephaestus.jei.energy": "Energia",
+  "gui.hephaestus.jei.energy_cost": "%s FE a cada %s ticks",
+  "gui.hephaestus.jei.energy_requires": "Requer Baterias Calcinadas e uma Porta de Energia Calcinada"
 }

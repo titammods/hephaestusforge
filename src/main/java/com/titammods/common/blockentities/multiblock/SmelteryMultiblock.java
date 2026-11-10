@@ -1,5 +1,6 @@
 package com.titammods.common.blockentities.multiblock;
 
+import com.titammods.common.blocks.SearedBatteryBlock;
 import com.titammods.common.blocks.SearedTankBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,8 +22,10 @@ public class SmelteryMultiblock {
     public BlockPos minInner;
     public BlockPos maxInner;
     public int internalVolume    = 0;
+    public boolean mixedFuel     = false;
 
     public final List<BlockPos> tanks = new ArrayList<>();
+    public final List<BlockPos> batteries = new ArrayList<>();
     public final List<BlockPos> walls = new ArrayList<>();
     public final List<BlockPos> floor = new ArrayList<>();
 
@@ -33,7 +36,9 @@ public class SmelteryMultiblock {
 
     public void scanStructure(Direction facing) {
         isValid = false;
+        mixedFuel = false;
         tanks.clear();
+        batteries.clear();
         walls.clear();
         floor.clear();
         internalVolume = 0;
@@ -83,12 +88,14 @@ public class SmelteryMultiblock {
 
         List<BlockPos> tempWalls = new ArrayList<>();
         List<BlockPos> tempTanks = new ArrayList<>();
+        List<BlockPos> tempBatteries = new ArrayList<>();
 
         while (currentY < floorY + 64) {
             boolean isLayerValid  = true;
             boolean hasWalls      = false;
             tempWalls.clear();
             tempTanks.clear();
+            tempBatteries.clear();
 
             for (int x = minX - 1; x <= maxX + 1; x++) {
                 for (int z = minZ - 1; z <= maxZ + 1; z++) {
@@ -110,6 +117,7 @@ public class SmelteryMultiblock {
                             tempWalls.add(pos);
                             hasWalls = true;
                             if (isTank(st)) tempTanks.add(pos);
+                            if (isBattery(st)) tempBatteries.add(pos);
                         } else {
                             isLayerValid = false;
                         }
@@ -123,6 +131,7 @@ public class SmelteryMultiblock {
                 if (isLayerValid) {
                     walls.addAll(tempWalls);
                     tanks.addAll(tempTanks);
+                    batteries.addAll(tempBatteries);
                 } else {
                     return;
                 }
@@ -133,6 +142,10 @@ public class SmelteryMultiblock {
         }
 
         int height = (currentY - 1) - floorY;
+        if (!tanks.isEmpty() && !batteries.isEmpty()) {
+            mixedFuel = true;
+            return;
+        }
         if (height > 0 && controllerFound) {
             this.minInner      = new BlockPos(minX, floorY + 1, minZ);
             this.maxInner      = new BlockPos(maxX, currentY - 1, maxZ);
@@ -148,7 +161,13 @@ public class SmelteryMultiblock {
     private boolean isValidWall(BlockState state) {
         return state.is(BlockTags.create(Identifier.fromNamespaceAndPath("c", "smeltery_wall")))
                 || state.is(BlockTags.create(Identifier.fromNamespaceAndPath("c", "smeltery_floor")))
-                || isTank(state);
+                || isTank(state)
+                || isBattery(state);
+    }
+
+    private boolean isBattery(BlockState state) {
+        return state.getBlock() instanceof SearedBatteryBlock
+                || state.is(BlockTags.create(Identifier.fromNamespaceAndPath("c", "smeltery_batteries")));
     }
 
     private boolean isTank(BlockState state) {
@@ -157,7 +176,7 @@ public class SmelteryMultiblock {
     }
 
     private boolean isInnerBlock(BlockState state) {
-        if (isValidWall(state) || isTank(state)) return false;
+        if (isValidWall(state)) return false;
         return state.isAir() || !state.getFluidState().isEmpty();
     }
 }

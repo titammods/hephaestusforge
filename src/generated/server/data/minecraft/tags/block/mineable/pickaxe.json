@@ -29,6 +29,8 @@
     "hephaestus:smeltery_controller",
     "hephaestus:seared_chute",
     "hephaestus:seared_drain",
+    "hephaestus:seared_battery",
+    "hephaestus:seared_energy_port",
     "hephaestus:seared_stone_stairs",
     "hephaestus:seared_cobble_stairs",
     "hephaestus:seared_paver_stairs",

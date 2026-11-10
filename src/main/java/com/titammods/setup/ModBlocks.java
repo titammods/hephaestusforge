@@ -148,6 +148,17 @@ public class ModBlocks {
                     BlockBehaviour.Properties.of().strength(3f, 15f).requiresCorrectToolForDrops()
                             .noOcclusion().setId(ResourceKey.create(Registries.BLOCK, k))));
 
+    public static final DeferredBlock<SearedBatteryBlock> SEARED_BATTERY =
+            registerBlock("seared_battery", k -> new SearedBatteryBlock(
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).strength(3f, 15f)
+                            .requiresCorrectToolForDrops()
+                            .setId(ResourceKey.create(Registries.BLOCK, k))));
+
+    public static final DeferredBlock<SearedEnergyPortBlock> SEARED_ENERGY_PORT =
+            registerBlock("seared_energy_port", k -> new SearedEnergyPortBlock(
+                    BlockBehaviour.Properties.of().strength(3f, 15f).requiresCorrectToolForDrops()
+                            .setId(ResourceKey.create(Registries.BLOCK, k))));
+
     public static final DeferredBlock<Block> SEARED_STONE_STAIRS = searedStairs("seared_stone_stairs", SEARED_STONE);
     public static final DeferredBlock<Block> SEARED_COBBLE_STAIRS = searedStairs("seared_cobble_stairs", SEARED_COBBLE);
     public static final DeferredBlock<Block> SEARED_PAVER_STAIRS = searedStairs("seared_paver_stairs", SEARED_PAVER);

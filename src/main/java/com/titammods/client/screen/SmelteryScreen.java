@@ -24,6 +24,7 @@ public class SmelteryScreen extends AbstractContainerScreen<SmelteryMenu> {
 
     public static final Identifier BACKGROUND =
             Identifier.fromNamespaceAndPath(TitamMods.MODID, "textures/gui/heating_structure.png");
+    private static final Identifier ENERGY_BAR = Identifier.fromNamespaceAndPath(TitamMods.MODID, "textures/gui/smeltery_energy.png");
     private static final int TEX = 256;
 
     private static final int SLOT_W     = 22;
@@ -160,7 +161,14 @@ public class SmelteryScreen extends AbstractContainerScreen<SmelteryMenu> {
         }
         blit(graphics, tankX, tankY, 176, 0, 80, 106);
 
-        if (blockEntity.fuelCapacity > 0 && !blockEntity.currentFuel.isEmpty()) {
+        if (blockEntity.energyCapacity > 0) {
+            int fh   = 90;
+            float pct = (float) blockEntity.energy / blockEntity.energyCapacity;
+            int fh2  = blockEntity.energy > 0 ? Math.max(1, Math.round(pct * fh)) : 0;
+            if (fh2 > 0)
+                graphics.blit(RenderPipelines.GUI_TEXTURED, ENERGY_BAR, x + 152, y + 32 + fh - fh2,
+                        0f, (float) (fh - fh2), 16, fh2, 16, 90);
+        } else if (blockEntity.fuelCapacity > 0 && !blockEntity.currentFuel.isEmpty()) {
             int fh   = 90;
             float pct = (float) blockEntity.currentFuel.getAmount() / blockEntity.fuelCapacity;
             int fh2  = Math.max(1, Math.round(pct * fh));
@@ -261,7 +269,13 @@ public class SmelteryScreen extends AbstractContainerScreen<SmelteryMenu> {
 
         if (mx >= x + 152 && mx < x + 168 && my >= y + 32 && my < y + 122) {
             List<Component> tips = new ArrayList<>();
-            if (blockEntity.fuelCapacity > 0) {
+            if (blockEntity.energyCapacity > 0) {
+                tips.add(Component.translatable("gui.hephaestus.energy").withStyle(ChatFormatting.RED));
+                tips.add(Component.translatable("gui.hephaestus.energy_amount",
+                        blockEntity.energy, blockEntity.energyCapacity).withStyle(ChatFormatting.GRAY));
+                if (blockEntity.fuel <= 0 && blockEntity.energy < SmelteryControllerBlockEntity.ENERGY_PER_FUEL)
+                    tips.add(Component.translatable("gui.hephaestus.melting.no_fuel").withStyle(ChatFormatting.RED));
+            } else if (blockEntity.fuelCapacity > 0) {
                 if (!blockEntity.currentFuel.isEmpty()) {
                     tips.add(Component.translatable(blockEntity.currentFuel.getDescriptionId())
                             .withStyle(ChatFormatting.GOLD));

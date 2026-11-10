@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "in_structure=false": {
+      "model": "hephaestus:block/smeltery/io/energy_port_inactive"
+    },
+    "in_structure=true": {
+      "model": "hephaestus:block/smeltery/io/energy_port_active"
+    }
+  }
+}

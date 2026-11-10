@@ -1,0 +1,254 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "hephaestus:block/smeltery/battery/battery",
+    "side": "hephaestus:block/smeltery/battery/battery",
+    "top": "hephaestus:block/smeltery/tank/tank_top",
+    "2": "hephaestus:block/smeltery/tank/casting_tank_top",
+    "led": "hephaestus:block/smeltery/battery/battery_led"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#side",
+          "cullface": "north"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#side",
+          "cullface": "east"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#side",
+          "cullface": "south"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#top",
+          "cullface": "up"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#top",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        16,
+        3
+      ],
+      "to": [
+        13,
+        18,
+        13
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4,
+            11,
+            12,
+            13
+          ],
+          "texture": "#2",
+          "cullface": "up"
+        },
+        "east": {
+          "uv": [
+            4,
+            11,
+            12,
+            13
+          ],
+          "texture": "#2",
+          "cullface": "up"
+        },
+        "south": {
+          "uv": [
+            4,
+            11,
+            12,
+            13
+          ],
+          "texture": "#2",
+          "cullface": "up"
+        },
+        "west": {
+          "uv": [
+            4,
+            11,
+            12,
+            13
+          ],
+          "texture": "#2",
+          "cullface": "up"
+        },
+        "up": {
+          "uv": [
+            3,
+            3,
+            13,
+            13
+          ],
+          "texture": "#2",
+          "cullface": "up"
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        3,
+        -0.01
+      ],
+      "to": [
+        10,
+        9,
+        -0.01
+      ],
+      "light_emission": 15,
+      "shade": false,
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            7,
+            10,
+            13
+          ],
+          "texture": "#led",
+          "cullface": "north"
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        3,
+        16.01
+      ],
+      "to": [
+        10,
+        9,
+        16.01
+      ],
+      "light_emission": 15,
+      "shade": false,
+      "faces": {
+        "south": {
+          "uv": [
+            6,
+            7,
+            10,
+            13
+          ],
+          "texture": "#led",
+          "cullface": "south"
+        }
+      }
+    },
+    {
+      "from": [
+        -0.01,
+        3,
+        6
+      ],
+      "to": [
+        -0.01,
+        9,
+        10
+      ],
+      "light_emission": 15,
+      "shade": false,
+      "faces": {
+        "west": {
+          "uv": [
+            6,
+            7,
+            10,
+            13
+          ],
+          "texture": "#led",
+          "cullface": "west"
+        }
+      }
+    },
+    {
+      "from": [
+        16.01,
+        3,
+        6
+      ],
+      "to": [
+        16.01,
+        9,
+        10
+      ],
+      "light_emission": 15,
+      "shade": false,
+      "faces": {
+        "east": {
+          "uv": [
+            6,
+            7,
+            10,
+            13
+          ],
+          "texture": "#led",
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

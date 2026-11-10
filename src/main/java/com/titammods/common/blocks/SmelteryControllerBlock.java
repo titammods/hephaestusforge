@@ -73,6 +73,8 @@ public class SmelteryControllerBlock extends BaseEntityBlock {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof SmelteryControllerBlockEntity ctrl && state.getValue(IN_STRUCTURE)) {
                 player.openMenu(ctrl, pos);
+            } else if (be instanceof SmelteryControllerBlockEntity ctrl && ctrl.isMixedFuel()) {
+                player.sendSystemMessage(Component.translatable("gui.hephaestus.smeltery.mixed_fuel"));
             } else {
                 player.sendSystemMessage(Component.translatable("gui.hephaestus.smeltery.incomplete"));
             }

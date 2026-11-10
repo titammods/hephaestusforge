@@ -70,7 +70,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
         tag(smelteryWall).addTag(smelteryFloor)
                 .add(ModBlocks.SEARED_CHUTE.get())
-                .add(ModBlocks.SEARED_DRAIN.get());
+                .add(ModBlocks.SEARED_DRAIN.get())
+                .add(ModBlocks.SEARED_ENERGY_PORT.get());
+
+        tag(bTag("c", "smeltery_batteries")).add(ModBlocks.SEARED_BATTERY.get());
 
         tag(smelteryWall)
                 .add(ModBlocks.CLEAR_GLASS.get())

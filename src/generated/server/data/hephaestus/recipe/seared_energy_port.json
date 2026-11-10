@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "hephaestus:forge_brick",
+    "R": "#c:dusts/redstone"
+  },
+  "pattern": [
+    "BBB",
+    "R R",
+    "BBB"
+  ],
+  "result": {
+    "id": "hephaestus:seared_energy_port"
+  }
+}

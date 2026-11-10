@@ -26,6 +26,8 @@ public final class ModCapabilities {
                 (drain, side) -> drain.getFluidResourceHandler());
         event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntities.BASIN.get(),
                 (basin, side) -> new WorldlyContainerWrapper(basin, side == null ? Direction.DOWN : side));
+        event.registerBlockEntity(Capabilities.Energy.BLOCK, ModBlockEntities.SEARED_ENERGY_PORT.get(),
+                (port, side) -> port.getEnergyHandler());
         event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntities.MELTER.get(),
                 (melter, side) -> melter.getItemResourceHandler());
         event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntities.SEARED_CHUTE.get(),

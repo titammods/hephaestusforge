@@ -5,6 +5,7 @@ import com.titammods.setup.ModBlocks;
 import com.titammods.setup.ModFluids;
 import com.titammods.setup.ModRecipes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -91,13 +92,17 @@ public class AlloyCategory implements IRecipeCategory<ModRecipes.AlloyRecipe> {
         if (recipe.temperature() <= 1000) fuels.add(new FluidStack(Fluids.LAVA, 1000));
         fuels.add(new FluidStack(ModFluids.MOLTEN_BLAZE.source.get(), 1000));
 
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 94, 43)
+        IRecipeSlotBuilder fuel = builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 94, 43)
                 .setFluidRenderer(1000, false, 16, 16)
                 .setOverlay(tankOverlay, 0, 0)
-                .addIngredients(NeoForgeTypes.FLUID_STACK, fuels)
-                .addRichTooltipCallback((view, tooltip) ->
-                        tooltip.add(Component.translatable("gui.hephaestus.temperature", recipe.temperature())
-                                .withStyle(ChatFormatting.GOLD)));
+                .addIngredients(NeoForgeTypes.FLUID_STACK, fuels);
+        if (SmelteryCategory.acceptsEnergy(recipe.temperature())) {
+            fuel.setCustomRenderer(EnergyIngredient.TYPE, new EnergyIngredientRenderer(16, 16))
+                    .addIngredient(EnergyIngredient.TYPE, EnergyIngredient.FUEL);
+        }
+        fuel.addRichTooltipCallback((view, tooltip) ->
+                tooltip.add(Component.translatable("gui.hephaestus.temperature", recipe.temperature())
+                        .withStyle(ChatFormatting.GOLD)));
     }
 
     @SuppressWarnings("removal")

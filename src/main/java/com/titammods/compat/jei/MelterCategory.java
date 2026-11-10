@@ -6,6 +6,7 @@ import com.titammods.setup.ModFluids;
 import com.titammods.setup.ModRecipes;
 import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -60,6 +61,11 @@ public class MelterCategory implements IRecipeCategory<ModRecipes.MeltingRecipe>
 
     @SuppressWarnings("removal")
     public IDrawable getBackground() { return background; }
+
+    protected boolean acceptsEnergy(ModRecipes.MeltingRecipe recipe) {
+        return false;
+    }
+
     @SuppressWarnings("removal")
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ModRecipes.MeltingRecipe recipe, IFocusGroup focuses) {
@@ -67,13 +73,17 @@ public class MelterCategory implements IRecipeCategory<ModRecipes.MeltingRecipe>
         if (recipe.temperature() <= 1000) validFuels.add(new FluidStack(Fluids.LAVA, 1000));
         validFuels.add(new FluidStack(ModFluids.MOLTEN_BLAZE.source.get(), 1000));
 
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 4, 4)
+        IRecipeSlotBuilder fuel = builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 4, 4)
                 .setBackground(blankLava, 0, 0)
                 .setFluidRenderer(1000, false, 12, 32)
-                .addIngredients(NeoForgeTypes.FLUID_STACK, validFuels)
-                .addRichTooltipCallback((view, tooltip) -> tooltip.add(
-                        Component.translatable("gui.hephaestus.temperature", recipe.temperature())
-                                .withStyle(ChatFormatting.GOLD)));
+                .addIngredients(NeoForgeTypes.FLUID_STACK, validFuels);
+        if (acceptsEnergy(recipe)) {
+            fuel.setCustomRenderer(EnergyIngredient.TYPE, new EnergyIngredientRenderer(12, 32))
+                    .addIngredient(EnergyIngredient.TYPE, EnergyIngredient.FUEL);
+        }
+        fuel.addRichTooltipCallback((view, tooltip) -> tooltip.add(
+                Component.translatable("gui.hephaestus.temperature", recipe.temperature())
+                        .withStyle(ChatFormatting.GOLD)));
 
         builder.addSlot(RecipeIngredientRole.INPUT, 24, 18)
                 .setBackground(blankItem, -1, -1)

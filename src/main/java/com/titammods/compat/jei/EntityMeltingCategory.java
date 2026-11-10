@@ -84,6 +84,8 @@ public class EntityMeltingCategory implements IRecipeCategory<ModRecipes.EntityM
                         new FluidStack(Fluids.LAVA, 1000),
                         new FluidStack(ModFluids.MOLTEN_BLAZE.source.get(), 1000)
                 ))
+                .setCustomRenderer(EnergyIngredient.TYPE, new EnergyIngredientRenderer(16, 16))
+                .addIngredient(EnergyIngredient.TYPE, EnergyIngredient.FUEL)
                 .addRichTooltipCallback((view, tooltip) ->
                         tooltip.add(Component.translatable("gui.hephaestus.temperature")
                                 .withStyle(ChatFormatting.GOLD)));

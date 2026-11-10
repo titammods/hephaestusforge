@@ -7,6 +7,7 @@ import com.titammods.setup.ModRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.registration.IModIngredientRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
@@ -50,6 +51,12 @@ public class TitamModsJEIPlugin implements IModPlugin {
     }
 
     @Override
+    public void registerIngredients(IModIngredientRegistration registration) {
+        registration.register(EnergyIngredient.TYPE, List.of(), new EnergyIngredientHelper(),
+                new EnergyIngredientRenderer(16, 16), EnergyIngredient.CODEC);
+    }
+
+    @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         var gui = registration.getJeiHelpers().getGuiHelper();
         registration.addRecipeCategories(
@@ -70,6 +77,7 @@ public class TitamModsJEIPlugin implements IModPlugin {
                 .byType(ModRecipes.MELTING_TYPE.get())
                 .stream().map(RecipeHolder::value).toList();
         registration.addRecipes(MELTING_TYPE, melting);
+        SmelteryCategory.updateEnergyTemperature(melting);
 
         List<ModRecipes.CastingTableRecipe> table = recipes
                 .byType(ModRecipes.CASTING_TABLE_TYPE.get())

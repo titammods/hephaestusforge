@@ -13,6 +13,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import com.titammods.common.blockentities.SmelteryControllerBlockEntity;
 import com.titammods.common.blockentities.SearedChuteBlockEntity;
 import com.titammods.common.blockentities.SearedDrainBlockEntity;
+import com.titammods.common.blockentities.SearedBatteryBlockEntity;
+import com.titammods.common.blockentities.SearedEnergyPortBlockEntity;
 
 public class ModBlockEntities {
 
@@ -68,4 +70,12 @@ public class ModBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SearedDrainBlockEntity>> SEARED_DRAIN =
             BLOCK_ENTITY_TYPES.register("seared_drain", () ->
                     new BlockEntityType<>(SearedDrainBlockEntity::new, ModBlocks.SEARED_DRAIN.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SearedBatteryBlockEntity>> SEARED_BATTERY =
+            BLOCK_ENTITY_TYPES.register("seared_battery", () ->
+                    new BlockEntityType<>(SearedBatteryBlockEntity::new, ModBlocks.SEARED_BATTERY.get()));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SearedEnergyPortBlockEntity>> SEARED_ENERGY_PORT =
+            BLOCK_ENTITY_TYPES.register("seared_energy_port", () ->
+                    new BlockEntityType<>(SearedEnergyPortBlockEntity::new, ModBlocks.SEARED_ENERGY_PORT.get()));
 }

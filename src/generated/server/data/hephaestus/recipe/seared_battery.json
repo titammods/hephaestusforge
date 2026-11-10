@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "hephaestus:seared_bricks",
+    "R": "#c:storage_blocks/redstone"
+  },
+  "pattern": [
+    "BBB",
+    "BRB",
+    "BBB"
+  ],
+  "result": {
+    "id": "hephaestus:seared_battery"
+  }
+}

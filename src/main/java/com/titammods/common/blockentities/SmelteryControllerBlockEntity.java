@@ -38,12 +38,15 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.model.data.ModelData;
 import org.jspecify.annotations.Nullable;
 
 import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -79,6 +82,11 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
 
     public FluidStack currentFuel  = FluidStack.EMPTY;
     public int fuelCapacity        = 0;
+    public static final int ENERGY_PER_FUEL = 10000;
+    public static final int FUEL_PER_ENERGY = 100;
+    public int energy              = 0;
+    public int energyCapacity      = 0;
+    private boolean mixedFuel      = false;
     public FluidStack displayFluid = FluidStack.EMPTY;
     @SuppressWarnings("removal")
     public SmelteryControllerBlockEntity(BlockPos pos, BlockState state) {
@@ -88,7 +96,7 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
                     @Override public net.minecraft.world.level.Level getLevel() { return level; }
                     @Override public net.minecraft.core.BlockPos getBlockPos() { return worldPosition; }
                     @Override public boolean isFormed() { return isFormed; }
-                    @Override public boolean hasFuel() { return !currentFuel.isEmpty() || fuel > 0; }
+                    @Override public boolean hasFuel() { return !currentFuel.isEmpty() || fuel > 0 || energy >= ENERGY_PER_FUEL; }
                 },
                 fluidTank,
                 stack -> {
@@ -145,6 +153,7 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
             checkMultiblockStructure();
             if (isFormed) {
                 updateFuelInfo();
+                updateEnergyInfo();
                 updateDisplayFluidSync();
                 processAlloying();
                 if (multiblock != null && multiblock.minInner != null) {
@@ -154,8 +163,10 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
                     entityMeltingModule.interactWithEntities(inner);
                 }
             } else {
-                this.currentFuel  = FluidStack.EMPTY;
-                this.fuelCapacity = 0;
+                this.currentFuel    = FluidStack.EMPTY;
+                this.fuelCapacity   = 0;
+                this.energy         = 0;
+                this.energyCapacity = 0;
                 setChanged();
             }
             level.sendBlockUpdated(pos, getBlockState(), getBlockState(), Block.UPDATE_ALL);
@@ -240,6 +251,56 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
                 }
             }
         }
+        consumeEnergy();
+    }
+
+    public boolean isMixedFuel() { return mixedFuel; }
+
+    public List<SearedBatteryBlockEntity> getBatteries() {
+        if (multiblock == null || level == null || multiblock.batteries.isEmpty()) return List.of();
+        List<SearedBatteryBlockEntity> list = new ArrayList<>(multiblock.batteries.size());
+        for (BlockPos pos : multiblock.batteries) {
+            if (level.getBlockEntity(pos) instanceof SearedBatteryBlockEntity battery) list.add(battery);
+        }
+        return list;
+    }
+
+    private int getEnergyTemperature() {
+        return getTemperatureForFuel(new FluidStack(Fluids.LAVA, 1));
+    }
+
+    private void updateEnergyInfo() {
+        int total = 0, capacity = 0;
+        for (SearedBatteryBlockEntity battery : getBatteries()) {
+            total    += battery.getEnergyHandler().getAmountAsInt();
+            capacity += battery.getEnergyHandler().getCapacityAsInt();
+        }
+        if (total != energy || capacity != energyCapacity) {
+            energy         = total;
+            energyCapacity = capacity;
+            setChanged();
+        }
+    }
+
+    private void consumeEnergy() {
+        List<SearedBatteryBlockEntity> batteries = getBatteries();
+        if (batteries.isEmpty()) return;
+        int temp = getEnergyTemperature();
+        if (temp <= 0) return;
+        try (Transaction tx = Transaction.openRoot()) {
+            int remaining = ENERGY_PER_FUEL;
+            for (SearedBatteryBlockEntity battery : batteries) {
+                if (remaining <= 0) break;
+                remaining -= battery.getEnergyHandler().extract(remaining, tx);
+            }
+            if (remaining > 0) return;
+            tx.commit();
+        }
+        this.fuel       += FUEL_PER_ENERGY;
+        this.maxFuel     = this.fuel;
+        this.temperature = temp;
+        updateEnergyInfo();
+        setChanged();
     }
 
     private int getTemperatureForFuel(FluidStack fluid) {
@@ -287,7 +348,7 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
         boolean changed = false;
         if (!(level instanceof ServerLevel sl)) return;
 
-        int availTemp = temperature > 0 ? temperature : (fuel <= 0 && !currentFuel.isEmpty() ? getTemperatureForFuel(currentFuel) : 0);
+        int availTemp = temperature > 0 ? temperature : (fuel <= 0 && !currentFuel.isEmpty() ? getTemperatureForFuel(currentFuel) : (fuel <= 0 && energy >= ENERGY_PER_FUEL ? getEnergyTemperature() : 0));
 
         for (int i = 0; i < itemHandler.getSlots(); i++) {
             ItemStack stack = itemHandler.getStackInSlot(i);
@@ -361,7 +422,7 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
     private void processAlloying() {
         if (!(level instanceof ServerLevel sl)) return;
         boolean changed = false;
-        int availTemp = temperature > 0 ? temperature : getTemperatureForFuel(currentFuel);
+        int availTemp = temperature > 0 ? temperature : (!currentFuel.isEmpty() ? getTemperatureForFuel(currentFuel) : (energy >= ENERGY_PER_FUEL ? getEnergyTemperature() : 0));
 
         for (var holder : sl.getServer().getRecipeManager().recipeMap()
                 .byType(ModRecipes.ALLOY_TYPE.get())) {
@@ -416,6 +477,7 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
         if (multiblock == null) multiblock = new SmelteryMultiblock(level, worldPosition);
         Direction facing = cur.getValue(BlockStateProperties.HORIZONTAL_FACING);
         multiblock.scanStructure(facing);
+        mixedFuel = multiblock.mixedFuel;
 
         if (multiblock.isValid) {
             int volume = multiblock.internalVolume;
@@ -436,6 +498,8 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
             temperature    = 0;
             currentFuel    = FluidStack.EMPTY;
             fuelCapacity   = 0;
+            energy         = 0;
+            energyCapacity = 0;
             fluidTank.setCapacity(0);
             syncedMinInner = null;
             syncedMaxInner = null;
@@ -476,6 +540,8 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
             drain.setControllerPos(target);
         if (be instanceof SearedChuteBlockEntity chute && !Objects.equals(chute.getControllerPos(), target))
             chute.setControllerPos(target);
+        if (be instanceof SearedEnergyPortBlockEntity port && !Objects.equals(port.getControllerPos(), target))
+            port.setControllerPos(target);
         if (link && be instanceof IDisplayFluidListener listener)
             listener.notifyDisplayFluidUpdated(displayFluid);
     }
@@ -525,6 +591,8 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
         output.putInt("temperature",   temperature);
         output.putBoolean("is_formed", isFormed);
         output.putInt("fuel_capacity", fuelCapacity);
+        output.putInt("energy",          energy);
+        output.putInt("energy_capacity", energyCapacity);
 
         output.putInt("progress_count", meltingProgress.length);
         for (int i = 0; i < meltingProgress.length; i++) {
@@ -569,6 +637,8 @@ public class SmelteryControllerBlockEntity extends BlockEntity implements MenuPr
         temperature  = input.getIntOr("temperature",   0);
         isFormed     = input.getBooleanOr("is_formed", false);
         fuelCapacity = input.getIntOr("fuel_capacity", 0);
+        energy         = input.getIntOr("energy",          0);
+        energyCapacity = input.getIntOr("energy_capacity", 0);
 
         int pc = input.getIntOr("progress_count", 0);
         meltingProgress = new int[pc];

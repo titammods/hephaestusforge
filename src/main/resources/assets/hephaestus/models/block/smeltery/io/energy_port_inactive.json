@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "hephaestus:block/smeltery/io/energy_port",
+    "end": "hephaestus:block/smeltery/seared/bricks"
+  }
+}

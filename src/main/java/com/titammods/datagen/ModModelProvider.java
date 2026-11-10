@@ -74,6 +74,8 @@ public class ModModelProvider implements DataProvider {
             "smeltery_controller",
             "seared_chute",
             "seared_drain",
+            "seared_battery",
+            "seared_energy_port",
     };
 
     private final PackOutput.PathProvider modelBlockPath;

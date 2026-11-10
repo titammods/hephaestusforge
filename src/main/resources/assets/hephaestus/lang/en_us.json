@@ -508,5 +508,15 @@
   "config.jade.plugin_hephaestus.melter_progress": "Melter Melting Progress",
   "fluid_type.hephaestus.molten_replica": "Molten Replica",
   "item.hephaestus.molten_replica_bucket": "Molten Replica Bucket",
-  "block.hephaestus.molten_replica_block": "Molten Replica"
+  "block.hephaestus.molten_replica_block": "Molten Replica",
+  "block.hephaestus.seared_battery": "Seared Battery",
+  "item.hephaestus.seared_battery": "Seared Battery",
+  "block.hephaestus.seared_energy_port": "Seared Energy Port",
+  "item.hephaestus.seared_energy_port": "Seared Energy Port",
+  "gui.hephaestus.smeltery.mixed_fuel": "The Smeltery can't use Fuel Tanks and Batteries at the same time!",
+  "gui.hephaestus.energy": "Energy",
+  "gui.hephaestus.energy_amount": "%s / %s FE",
+  "gui.hephaestus.jei.energy": "Energy",
+  "gui.hephaestus.jei.energy_cost": "%s FE every %s ticks",
+  "gui.hephaestus.jei.energy_requires": "Requires Seared Batteries and a Seared Energy Port"
 }
