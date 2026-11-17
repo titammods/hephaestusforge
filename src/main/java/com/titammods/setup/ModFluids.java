@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -43,7 +44,12 @@ public class ModFluids {
                     .temperature(1300)
                     .density(3000)
                     .viscosity(6000)
-                    .lightLevel(15)));
+                    .lightLevel(15)
+                    .motionScale(0.0023333333333333335D)
+                    .canSwim(false)
+                    .canDrown(false)
+                    .pathType(PathType.LAVA)
+                    .adjacentPathType(null)));
 
             source = FLUIDS.register(name, () -> new BaseFlowingFluid.Source(getProperties()));
             flowing = FLUIDS.register(name + "_flowing", () -> new BaseFlowingFluid.Flowing(getProperties()));

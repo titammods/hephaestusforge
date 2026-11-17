@@ -6,6 +6,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -30,7 +31,12 @@ public class MoltenFluidSet {
                         .temperature(temperature)
                         .density(2000)
                         .viscosity(10000)
-                        .lightLevel(10), color)
+                        .lightLevel(10)
+                        .motionScale(0.0023333333333333335D)
+                        .canSwim(false)
+                        .canDrown(false)
+                        .pathType(PathType.LAVA)
+                        .adjacentPathType(null), color)
         );
 
         BaseFlowingFluid.Properties fluidProps = new BaseFlowingFluid.Properties(
