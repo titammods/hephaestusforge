@@ -8,6 +8,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
+import org.jetbrains.annotations.Nullable;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -257,6 +259,41 @@ public class SmelteryScreen extends AbstractContainerScreen<SmelteryMenu> {
             }
             graphics.renderComponentTooltip(font, tips, mouseX, mouseY);
         }
+    }
+
+    public List<Rect2i> getSidePanelAreas() {
+        if (getVisRows() <= 0) return List.of();
+        return List.of(new Rect2i(panelX(), panelY(), panelW(), panelH()));
+    }
+
+    @Nullable
+    public HoveredFluid getHoveredFluid(double mouseX, double mouseY) {
+        if (blockEntity == null) return null;
+        int x = this.leftPos;
+        int y = this.topPos;
+
+        int tankX = x + 8, tankY = y + 16, tankW = 106, tankH = 106;
+        if (mouseX >= tankX && mouseX < tankX + tankW && mouseY >= tankY && mouseY < tankY + tankH) {
+            List<FluidStack> fluids = blockEntity.fluidTank.getFluids();
+            int cap                 = blockEntity.fluidTank.getCapacity();
+            if (cap <= 0 || fluids.isEmpty()) return null;
+            int[] heights = calcLiquidHeights(fluids, cap, tankH, 3);
+            int currentY  = tankY + tankH;
+            for (int i = 0; i < fluids.size(); i++) {
+                currentY -= heights[i];
+                if (mouseY >= currentY && mouseY < currentY + heights[i]) {
+                    return new HoveredFluid(fluids.get(i), tankX, currentY, tankW, heights[i]);
+                }
+            }
+            return null;
+        }
+
+        int fuelX = x + 152, fuelY = y + 32, fuelW = 16, fuelH = 90;
+        if (mouseX >= fuelX && mouseX < fuelX + fuelW && mouseY >= fuelY && mouseY < fuelY + fuelH
+                && !blockEntity.currentFuel.isEmpty()) {
+            return new HoveredFluid(blockEntity.currentFuel, fuelX, fuelY, fuelW, fuelH);
+        }
+        return null;
     }
 
     private List<Component> fluidTooltip(FluidStack fluid, int totalCap, boolean shift) {

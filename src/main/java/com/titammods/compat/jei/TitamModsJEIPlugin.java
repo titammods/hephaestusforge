@@ -120,6 +120,21 @@ public class TitamModsJEIPlugin implements IModPlugin {
     }
 
     @Override
+    public void registerGuiHandlers(mezz.jei.api.registration.IGuiHandlerRegistration registration) {
+        HephaestusGuiHandlers.register(registration);
+    }
+
+    @Override
+    public void onRuntimeAvailable(mezz.jei.api.runtime.IJeiRuntime jeiRuntime) {
+        HephaestusGuiHandlers.setIngredientManager(jeiRuntime.getIngredientManager());
+    }
+
+    @Override
+    public void onRuntimeUnavailable() {
+        HephaestusGuiHandlers.setIngredientManager(null);
+    }
+
+    @Override
     public void registerRuntime(mezz.jei.api.registration.IRuntimeRegistration registration) {
         if (!net.neoforged.fml.ModList.get().isLoaded("alltheores")) return;
 

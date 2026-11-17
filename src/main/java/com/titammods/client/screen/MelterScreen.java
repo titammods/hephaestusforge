@@ -18,6 +18,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import org.lwjgl.glfw.GLFW;
 
@@ -206,6 +207,28 @@ public class MelterScreen extends AbstractContainerScreen<MelterMenu> {
                 }
             }
         }
+    }
+
+    @Nullable
+    public HoveredFluid getHoveredFluid(double mouseX, double mouseY) {
+        int tankX = leftPos + 90;
+        int tankY = topPos + 16;
+        if (mouseX >= tankX && mouseX < tankX + 52 && mouseY >= tankY && mouseY < tankY + 52) {
+            FluidStack fluid = this.menu.getBlockEntity().tank.getFluid();
+            return fluid.isEmpty() ? null : new HoveredFluid(fluid, tankX, tankY, 52, 52);
+        }
+
+        Level level = this.menu.getBlockEntity().getLevel();
+        if (level == null) return null;
+        int fuelX = leftPos + 152, fuelY = topPos + 31;
+        if (mouseX >= fuelX && mouseX < fuelX + 14 && mouseY >= fuelY && mouseY < fuelY + 38) {
+            BlockPos posBelow = this.menu.getBlockEntity().getBlockPos().below();
+            IFluidHandler fuelTank = level.getCapability(Capabilities.FluidHandler.BLOCK, posBelow, Direction.UP);
+            if (fuelTank == null) return null;
+            FluidStack fuelFluid = fuelTank.getFluidInTank(0);
+            return fuelFluid.isEmpty() ? null : new HoveredFluid(fuelFluid.copy(), fuelX, fuelY, 14, 38);
+        }
+        return null;
     }
 
     @Override
