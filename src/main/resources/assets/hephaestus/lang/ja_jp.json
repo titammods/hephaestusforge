@@ -1,0 +1,333 @@
+{
+  "itemGroup.hephaestus.tab": "Hephaestus Foundry",
+  "itemGroup.hephaestus": "Hephaestus Foundry",
+
+  "block.hephaestus.seared_stone": "焼成石",
+  "block.hephaestus.seared_stone_slab": "焼成石のハーフブロック",
+  "block.hephaestus.seared_stone_stairs": "焼成石の階段",
+  "block.hephaestus.seared_stone_wall": "焼成石の塀",
+
+  "block.hephaestus.seared_cobble": "焼成丸石",
+  "block.hephaestus.seared_cobble_slab": "焼成丸石のハーフブロック",
+  "block.hephaestus.seared_cobble_stairs": "焼成丸石の階段",
+  "block.hephaestus.seared_cobble_wall": "焼成丸石の塀",
+
+  "block.hephaestus.seared_paver": "舗装された焼成石",
+  "block.hephaestus.seared_paver_slab": "舗装された焼成石のハーフブロック",
+  "block.hephaestus.seared_paver_stairs": "舗装された焼成石の階段",
+  "block.hephaestus.seared_paver_wall": "舗装された焼成石の塀",
+
+  "block.hephaestus.seared_bricks": "焼成レンガ",
+  "block.hephaestus.seared_bricks_slab": "焼成レンガのハーフブロック",
+  "block.hephaestus.seared_bricks_stairs": "焼成レンガの階段",
+  "block.hephaestus.seared_bricks_wall": "焼成レンガの塀",
+
+  "block.hephaestus.seared_cracked_bricks": "ひび割れた焼成レンガ",
+  "block.hephaestus.seared_cracked_bricks_slab": "ひび割れた焼成レンガのハーフブロック",
+  "block.hephaestus.seared_cracked_bricks_stairs": "ひび割れた焼成レンガの階段",
+  "block.hephaestus.seared_cracked_bricks_wall": "ひび割れた焼成レンガの塀",
+
+  "block.hephaestus.seared_fancy_bricks": "おしゃれな焼成レンガ",
+  "block.hephaestus.seared_fancy_bricks_slab": "おしゃれな焼成レンガのハーフブロック",
+  "block.hephaestus.seared_fancy_bricks_stairs": "おしゃれな焼成レンガの階段",
+  "block.hephaestus.seared_fancy_bricks_wall": "おしゃれな焼成レンガの塀",
+
+  "block.hephaestus.seared_triangle_bricks": "三角柄の焼成レンガ",
+  "block.hephaestus.seared_triangle_bricks_slab": "三角柄の焼成レンガのハーフブロック",
+  "block.hephaestus.seared_triangle_bricks_stairs": "三角柄の焼成レンガの階段",
+  "block.hephaestus.seared_triangle_bricks_wall": "三角柄の焼成レンガの塀",
+
+  "block.hephaestus.seared_creeper": "クリーパー柄の焼成レンガ",
+  "block.hephaestus.seared_creeper_slab": "クリーパー柄の焼成レンガのハーフブロック",
+  "block.hephaestus.seared_creeper_stairs": "クリーパー柄の焼成レンガの階段",
+  "block.hephaestus.seared_creeper_wall": "クリーパー柄の焼成レンガの塀",
+
+  "block.hephaestus.seared_road": "道柄の焼成レンガ",
+  "block.hephaestus.seared_road_slab": "道柄の焼成レンガのハーフブロック",
+  "block.hephaestus.seared_road_stairs": "道柄の焼成レンガの階段",
+  "block.hephaestus.seared_road_wall": "道柄の焼成レンガの塀",
+
+  "block.hephaestus.seared_small_bricks": "小さな焼成レンガ",
+  "block.hephaestus.seared_small_bricks_slab": "小さな焼成レンガのハーフブロック",
+  "block.hephaestus.seared_small_bricks_stairs": "小さな焼成レンガの階段",
+  "block.hephaestus.seared_small_bricks_wall": "小さな焼成レンガの塀",
+
+  "block.hephaestus.seared_square_bricks": "四角柄の焼成レンガ",
+  "block.hephaestus.seared_square_bricks_slab": "四角柄の焼成レンガのハーフブロック",
+  "block.hephaestus.seared_square_bricks_stairs": "四角柄の焼成レンガの階段",
+  "block.hephaestus.seared_square_bricks_wall": "四角柄の焼成レンガの塀",
+
+  "block.hephaestus.seared_tile": "焼成タイル",
+  "block.hephaestus.seared_tile_slab": "焼成タイルのハーフブロック",
+  "block.hephaestus.seared_tile_stairs": "焼成タイルの階段",
+  "block.hephaestus.seared_tile_wall": "焼成タイルの塀",
+
+  "block.hephaestus.seared_ladder": "焼成石のはしご",
+  "block.hephaestus.seared_glass": "焼成ガラス",
+  "block.hephaestus.seared_tinted_glass": "遮光焼成ガラス",
+
+  "block.hephaestus.clear_glass": "クリアガラス",
+  "block.hephaestus.clear_tinted_glass": "クリア遮光ガラス",
+  "block.hephaestus.clear_stained_glass": "色付きクリアガラス",
+
+  "block.hephaestus.seared_melter": "焼成石の溶融器",
+  "block.hephaestus.seared_heater": "焼成石の発熱器",
+  "block.hephaestus.seared_table": "焼成石の鋳造台",
+  "block.hephaestus.seared_basin": "焼成石の鋳造鉢",
+  "block.hephaestus.seared_faucet": "焼成石の蛇口",
+  "block.hephaestus.seared_channel": "焼成石のチャネル",
+
+  "block.hephaestus.seared_fuel_tank": "焼成石の燃料タンク",
+  "block.hephaestus.seared_fuel_gauge": "焼成石の燃料ゲージ",
+  "block.hephaestus.seared_ingot_tank": "焼成石のインゴットタンク",
+  "block.hephaestus.seared_ingot_gauge": "焼成石のインゴットゲージ",
+  "block.hephaestus.seared_casting_tank": "焼成石の鋳造タンク",
+  "block.hephaestus.seared_lamp": "焼成石のランプ",
+
+  "block.hephaestus.smeltery_controller": "乾式製錬炉コントローラー",
+  "block.hephaestus.seared_drain": "焼成石のドレン",
+  "block.hephaestus.seared_chute": "焼成石のシュート",
+  "block.hephaestus.seared_duct": "焼成石のダクト",
+
+  "item.hephaestus.blank_cast": "空の鋳型",
+  "item.hephaestus.ingot_cast": "インゴットの鋳型",
+  "item.hephaestus.nugget_cast": "塊の鋳型",
+  "item.hephaestus.gem_cast": "宝石の鋳型",
+  "item.hephaestus.coin_cast": "硬貨の鋳型",
+  "item.hephaestus.gear_cast": "歯車の鋳型",
+  "item.hephaestus.plate_cast": "板の鋳型",
+  "item.hephaestus.rod_cast": "棒の鋳型",
+
+  "item.hephaestus.forge_brick": "焼成レンガ",
+  "item.hephaestus.raw_cobalt": "コバルトの原石",
+  "item.hephaestus.cobalt_ingot": "コバルトインゴット",
+  "item.hephaestus.cobalt_powder": "コバルトの粉",
+  "item.hephaestus.raw_steel": "鋼鉄の原石",
+  "item.hephaestus.steel_ingot": "鋼鉄インゴット",
+  "item.hephaestus.steel_powder": "鋼鉄の粉",
+  "item.hephaestus.cobalt_nugget": "コバルト塊",
+  "block.hephaestus.cobalt_block": "コバルトブロック",
+  "block.hephaestus.raw_cobalt_block": "コバルトの原石ブロック",
+  "item.hephaestus.steel_nugget": "鋼鉄塊",
+  "block.hephaestus.steel_block": "鋼鉄ブロック",
+
+  "gui.hephaestus.conflict.title": "§c［HEPHAESTUS］重大なMod競合が発生しました！",
+  "gui.hephaestus.conflict.description": "Hephaestus Modにより、「alltheores」と「ftbmaterials」の両方が導入されていることが検出されました。\n\nこの2つのModはアイテムの重複を引き起こすため、同時に使用することはできません。\nゲームを終了し、「mods」フォルダからどちらか一方を削除してください。\n\n（下のいずれかのボタンをクリックするとゲームを終了します）",
+
+  "fluid_type.hephaestus.molten_seared_stone": "溶融した焼成石",
+  "item.hephaestus.molten_seared_stone_bucket": "溶融した焼成石入りバケツ",
+  "block.hephaestus.molten_seared_stone_block": "溶融した焼成石",
+
+  "fluid_type.hephaestus.molten_scorched_stone": "溶融した焦熱石",
+  "item.hephaestus.molten_scorched_stone_bucket": "溶融した焦熱石入りバケツ",
+  "block.hephaestus.molten_scorched_stone_block": "溶融した焦熱石",
+
+  "fluid_type.hephaestus.molten_aluminum": "溶融したアルミニウム",
+  "item.hephaestus.molten_aluminum_bucket": "溶融したアルミニウム入りバケツ",
+  "block.hephaestus.molten_aluminum_block": "溶融したアルミニウム",
+
+  "fluid_type.hephaestus.molten_brass": "溶融した真鍮",
+  "item.hephaestus.molten_brass_bucket": "溶融した真鍮入りバケツ",
+  "block.hephaestus.molten_brass_block": "溶融した真鍮",
+
+  "fluid_type.hephaestus.molten_bronze": "溶融した青銅",
+  "item.hephaestus.molten_bronze_bucket": "溶融した青銅入りバケツ",
+  "block.hephaestus.molten_bronze_block": "溶融した青銅",
+
+  "fluid_type.hephaestus.molten_constantan": "溶融したコンスタンタン",
+  "item.hephaestus.molten_constantan_bucket": "溶融したコンスタンタン入りバケツ",
+  "block.hephaestus.molten_constantan_block": "溶融したコンスタンタン",
+
+  "fluid_type.hephaestus.molten_copper": "溶融した銅",
+  "item.hephaestus.molten_copper_bucket": "溶融した銅入りバケツ",
+  "block.hephaestus.molten_copper_block": "溶融した銅",
+
+  "fluid_type.hephaestus.molten_electrum": "溶融したエレクトラム",
+  "item.hephaestus.molten_electrum_bucket": "溶融したエレクトラム入りバケツ",
+  "block.hephaestus.molten_electrum_block": "溶融したエレクトラム",
+
+  "fluid_type.hephaestus.molten_enderium": "溶融したエンダリウム",
+  "item.hephaestus.molten_enderium_bucket": "溶融したエンダリウム入りバケツ",
+  "block.hephaestus.molten_enderium_block": "溶融したエンダリウム",
+
+  "fluid_type.hephaestus.molten_gold": "溶融した金",
+  "item.hephaestus.molten_gold_bucket": "溶融した金入りバケツ",
+  "block.hephaestus.molten_gold_block": "溶融した金",
+
+  "fluid_type.hephaestus.molten_invar": "溶融したインバー",
+  "item.hephaestus.molten_invar_bucket": "溶融したインバー入りバケツ",
+  "block.hephaestus.molten_invar_block": "溶融したインバー",
+
+  "fluid_type.hephaestus.molten_iridium": "溶融したイリジウム",
+  "item.hephaestus.molten_iridium_bucket": "溶融したイリジウム入りバケツ",
+  "block.hephaestus.molten_iridium_block": "溶融したイリジウム",
+
+  "fluid_type.hephaestus.molten_iron": "溶融した鉄",
+  "item.hephaestus.molten_iron_bucket": "溶融した鉄入りバケツ",
+  "block.hephaestus.molten_iron_block": "溶融した鉄",
+
+  "fluid_type.hephaestus.molten_lead": "溶融した鉛",
+  "item.hephaestus.molten_lead_bucket": "溶融した鉛入りバケツ",
+  "block.hephaestus.molten_lead_block": "溶融した鉛",
+
+  "fluid_type.hephaestus.molten_lumium": "溶融したルミウム",
+  "item.hephaestus.molten_lumium_bucket": "溶融したルミウム入りバケツ",
+  "block.hephaestus.molten_lumium_block": "溶融したルミウム",
+
+  "fluid_type.hephaestus.molten_netherite": "溶融したネザライト",
+  "item.hephaestus.molten_netherite_bucket": "溶融したネザライト入りバケツ",
+  "block.hephaestus.molten_netherite_block": "溶融したネザライト",
+
+  "fluid_type.hephaestus.molten_nickel": "溶融したニッケル",
+  "item.hephaestus.molten_nickel_bucket": "溶融したニッケル入りバケツ",
+  "block.hephaestus.molten_nickel_block": "溶融したニッケル",
+
+  "fluid_type.hephaestus.molten_osmium": "溶融したオスミウム",
+  "item.hephaestus.molten_osmium_bucket": "溶融したオスミウム入りバケツ",
+  "block.hephaestus.molten_osmium_block": "溶融したオスミウム",
+
+  "fluid_type.hephaestus.molten_platinum": "溶融したプラチナ",
+  "item.hephaestus.molten_platinum_bucket": "溶融したプラチナ入りバケツ",
+  "block.hephaestus.molten_platinum_block": "溶融したプラチナ",
+
+  "fluid_type.hephaestus.molten_signalum": "溶融したシグナルム",
+  "item.hephaestus.molten_signalum_bucket": "溶融したシグナルム入りバケツ",
+  "block.hephaestus.molten_signalum_block": "溶融したシグナルム",
+
+  "fluid_type.hephaestus.molten_silver": "溶融した銀",
+  "item.hephaestus.molten_silver_bucket": "溶融した銀入りバケツ",
+  "block.hephaestus.molten_silver_block": "溶融した銀",
+
+  "fluid_type.hephaestus.molten_steel": "溶融した鋼鉄",
+  "item.hephaestus.molten_steel_bucket": "溶融した鋼鉄入りバケツ",
+  "block.hephaestus.molten_steel_block": "溶融した鋼鉄",
+
+  "fluid_type.hephaestus.molten_tin": "溶融した錫",
+  "item.hephaestus.molten_tin_bucket": "溶融した錫入りバケツ",
+  "block.hephaestus.molten_tin_block": "溶融した錫",
+
+  "fluid_type.hephaestus.molten_uranium": "溶融したウラン",
+  "item.hephaestus.molten_uranium_bucket": "溶融したウラン入りバケツ",
+  "block.hephaestus.molten_uranium_block": "溶融したウラン",
+
+  "fluid_type.hephaestus.molten_zinc": "溶融した亜鉛",
+  "item.hephaestus.molten_zinc_bucket": "溶融した亜鉛入りバケツ",
+  "block.hephaestus.molten_zinc_block": "溶融した亜鉛",
+
+  "fluid.hephaestus.molten_diamond": "溶融したダイヤモンド",
+  "item.hephaestus.molten_diamond_bucket": "溶融したダイヤモンド入りバケツ",
+  "block.hephaestus.molten_diamond_block": "溶融したダイヤモンド",
+
+  "fluid.hephaestus.molten_emerald": "溶融したエメラルド",
+  "item.hephaestus.molten_emerald_bucket": "溶融したエメラルド入りバケツ",
+  "block.hephaestus.molten_emerald_block": "溶融したエメラルド",
+
+  "fluid.hephaestus.molten_amethyst": "溶融したアメジスト",
+  "item.hephaestus.molten_amethyst_bucket": "溶融したアメジスト入りバケツ",
+  "block.hephaestus.molten_amethyst_block": "溶融したアメジスト",
+
+  "fluid.hephaestus.molten_quartz": "溶融したクォーツ",
+  "item.hephaestus.molten_quartz_bucket": "溶融したクォーツ入りバケツ",
+  "block.hephaestus.molten_quartz_block": "溶融したクォーツ",
+
+  "fluid.hephaestus.molten_cobalt": "溶融したコバルト",
+  "item.hephaestus.molten_cobalt_bucket": "溶融したコバルト入りバケツ",
+  "block.hephaestus.molten_cobalt_block": "溶融したコバルト",
+
+  "fluid.hephaestus.molten_blaze": "溶融したブレイズ",
+  "item.hephaestus.molten_blaze_bucket": "溶融したブレイズ入りバケツ",
+  "block.hephaestus.molten_blaze_block": "溶融したブレイズ",
+
+  "fluid_type.hephaestus.molten_heavy_core": "溶融したヘビーコア",
+  "item.hephaestus.molten_heavy_core_bucket": "溶融したヘビーコア入りバケツ",
+  "block.hephaestus.molten_heavy_core_block": "溶融したヘビーコア",
+
+  "fluid_type.hephaestus.molten_glowstone": "溶融したグロウストーン",
+  "item.hephaestus.molten_glowstone_bucket": "溶融したグロウストーン入りバケツ",
+  "block.hephaestus.molten_glowstone_block": "溶融したグロウストーン",
+
+  "fluid_type.hephaestus.molten_redstone": "溶融したレッドストーン",
+  "item.hephaestus.molten_redstone_bucket": "溶融したレッドストーン入りバケツ",
+  "block.hephaestus.molten_redstone_block": "溶融したレッドストーン",
+
+  "fluid_type.hephaestus.molten_obsidian": "溶融した黒曜石",
+  "item.hephaestus.molten_obsidian_bucket": "溶融した黒曜石入りバケツ",
+  "block.hephaestus.molten_obsidian_block": "溶融した黒曜石",
+
+  "fluid_type.hephaestus.molten_glass": "溶融したガラス",
+  "item.hephaestus.molten_glass_bucket": "溶融したガラス入りバケツ",
+  "block.hephaestus.molten_glass_block": "溶融したガラス",
+
+  "fluid_type.hephaestus.molten_lapis": "溶融したラピスラズリ",
+  "item.hephaestus.molten_lapis_bucket": "溶融したラピスラズリ入りバケツ",
+  "block.hephaestus.molten_lapis_block": "溶融したラピスラズリ",
+
+  "fluid_type.hephaestus.molten_carbon": "溶融した炭素",
+  "item.hephaestus.molten_carbon_bucket": "溶融した炭素入りバケツ",
+  "block.hephaestus.molten_carbon_block": "溶融した炭素",
+
+  "fluid_type.hephaestus.molten_ender": "溶融したエンダー",
+  "item.hephaestus.molten_ender_bucket": "溶融したエンダー入りバケツ",
+  "block.hephaestus.molten_ender_block": "溶融したエンダー",
+
+  "fluid_type.hephaestus.molten_ancient_debris": "溶融した古代の残骸",
+  "item.hephaestus.molten_ancient_debris_bucket": "溶融した古代の残骸入りバケツ",
+  "block.hephaestus.molten_ancient_debris_block": "溶融した古代の残骸",
+
+  "fluid_type.hephaestus.molten_shulker_shell": "溶融したシュルカーの殻",
+  "item.hephaestus.molten_shulker_shell_bucket": "溶融したシュルカーの殻入りバケツ",
+  "block.hephaestus.molten_shulker_shell_block": "溶融したシュルカーの殻",
+
+  "fluid_type.hephaestus.molten_slime": "溶融したスライム",
+  "item.hephaestus.molten_slime_bucket": "溶融したスライム入りバケツ",
+  "block.hephaestus.molten_slime_block": "溶融したスライム",
+
+  "fluid_type.hephaestus.molten_magma_cream": "溶融したマグマクリーム",
+  "item.hephaestus.molten_magma_cream_bucket": "溶融したマグマクリーム入りバケツ",
+  "block.hephaestus.molten_magma_cream_block": "溶融したマグマクリーム",
+
+  "fluid_type.hephaestus.molten_wax": "溶融した蝋",
+  "item.hephaestus.molten_wax_bucket": "溶融した蝋入りバケツ",
+  "block.hephaestus.molten_wax_block": "溶融した蝋",
+
+  "fluid_type.hephaestus.molten_meat": "液状肉",
+  "item.hephaestus.molten_meat_bucket": "液状肉入りバケツ",
+  "block.hephaestus.molten_meat_block": "液状肉",
+
+  "fluid_type.hephaestus.molten_refined_glowstone": "溶融した精製グロウストーン",
+  "item.hephaestus.molten_refined_glowstone_bucket": "溶融した精製グロウストーン入りバケツ",
+  "block.hephaestus.molten_refined_glowstone_block": "溶融した精製グロウストーン",
+
+  "fluid_type.hephaestus.molten_refined_obsidian": "溶融した精製黒曜石",
+  "item.hephaestus.molten_refined_obsidian_bucket": "溶融した精製黒曜石入りバケツ",
+  "block.hephaestus.molten_refined_obsidian_block": "溶融した精製黒曜石",
+
+  "item.hephaestus.tank.empty": "空",
+
+  "gui.hephaestus.tank.bucket.auto.title": "モード：自動",
+  "block.titammods.smeltery_controller": "乾式製錬炉コントローラー",
+  "gui.hephaestus.melting.no_fuel": "燃料がありません",
+  "gui.hephaestus.melting.no_tank": "タンクがありません",
+  "gui.hephaestus.alloying": "合金化",
+  "gui.hephaestus.entity_melting": "エンティティ溶融",
+  "gui.hephaestus.entity_melting.per_heart": "ハート%s個分のダメージあたり",
+  "gui.hephaestus.fluid_mb": "%s mB",
+  "gui.hephaestus.temperature": "燃料が必要",
+  "gui.hephaestus.shift_hint": "Shiftを押して詳細を表示",
+  "gui.hephaestus.tank_capacity": "%s／%s mB",
+  "gui.hephaestus.tank_free": "空き：%s mB",
+  "gui.hephaestus.fluid_amount": "%s／%s mB",
+  "gui.hephaestus.unit.blocks": "ブロック分",
+  "gui.hephaestus.unit.ingots": "インゴット分",
+  "gui.hephaestus.unit.nuggets": "塊分",
+  "gui.hephaestus.melter.tank_empty": "容量：%s mB",
+  "gui.hephaestus.smeltery.incomplete": "§c乾式製錬炉が不完全です！",
+
+  "jade.hephaestus.melting_entry": "%s %s%%",
+  "jade.hephaestus.melting_full_tank": "%s（タンクが満杯です）",
+  "jade.hephaestus.melting_too_cold": "%s（熱量が足りません）",
+  "jade.hephaestus.melting_more": "その他%s項目…",
+  "config.jade.plugin_hephaestus.smeltery_progress": "乾式製錬炉の溶融進行度",
+  "config.jade.plugin_hephaestus.melter_progress": "溶融器の溶融進行度",
+  "config.jade.plugin_hephaestus.hidden_items": "デフォルトのインベントリを非表示"
+}
