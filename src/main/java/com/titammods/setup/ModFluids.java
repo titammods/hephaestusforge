@@ -1,6 +1,7 @@
 package com.titammods.setup;
 
 import com.titammods.TitamMods;
+import com.titammods.registry.fluids.MoltenFluidType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BucketItem;
@@ -33,7 +34,7 @@ public class ModFluids {
         public final Supplier<BucketItem> bucket;
 
         public MoltenFluid(String name) {
-            type = FLUID_TYPES.register(name, () -> new FluidType(FluidType.Properties.create()
+            type = FLUID_TYPES.register(name, () -> new MoltenFluidType(FluidType.Properties.create()
                     .descriptionId("fluid." + TitamMods.MODID + "." + name)
                     .fallDistanceModifier(0F)
                     .canExtinguish(false)
@@ -49,7 +50,7 @@ public class ModFluids {
                     .canSwim(false)
                     .canDrown(false)
                     .pathType(PathType.LAVA)
-                    .adjacentPathType(null)));
+                    .adjacentPathType(null), 0xFFFFFFFF));
 
             source = FLUIDS.register(name, () -> new BaseFlowingFluid.Source(getProperties()));
             flowing = FLUIDS.register(name + "_flowing", () -> new BaseFlowingFluid.Flowing(getProperties()));
